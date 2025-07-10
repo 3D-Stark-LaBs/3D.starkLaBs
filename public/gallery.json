@@ -1,0 +1,36 @@
+[
+  {
+    "id": "post-1",
+    "title": "Sample 3D Model",
+    "description": "A sample 3D printed model showcasing our work.",
+    "date": "2025-07-10",
+    "thumbnail": "./gallery/post-1/1.jpg",
+    "images": [
+      "./gallery/post-1/1.jpg",
+      "./gallery/post-1/2.jpg"
+    ],
+    "model": "./gallery/post-1/model.stl",
+    "tags": ["sample", "3d-printing", "design"],
+    "detailsLink": "#post-1"
+  },
+  {
+    "id": "coming-soon-1",
+    "title": "Coming Soon",
+    "description": "More amazing 3D creations coming soon!",
+    "date": "2025-07-10",
+    "thumbnail": "https://via.placeholder.com/400x300?text=Coming+Soon",
+    "images": ["https://via.placeholder.com/800x600?text=Coming+Soon"],
+    "tags": ["coming-soon"],
+    "detailsLink": "#"
+  },
+  {
+    "id": "coming-soon-2",
+    "title": "Coming Soon",
+    "description": "Stay tuned for more 3D printing projects!",
+    "date": "2025-07-10",
+    "thumbnail": "https://via.placeholder.com/400x300?text=Coming+Soon",
+    "images": ["https://via.placeholder.com/800x600?text=Coming+Soon"],
+    "tags": ["coming-soon"],
+    "detailsLink": "#"
+  }
+]
