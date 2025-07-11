@@ -22,6 +22,9 @@
     --font-main: 'Inter', system-ui, -apple-system, sans-serif;
 }
 
+
+
+
 /* Dark theme */
 .dark {
     --primary: var(--brand-purple);
@@ -249,11 +252,17 @@ html {
     right: 0;
     bottom: 0;
     background-color: rgba(255, 255, 255, 0.9);
-    display: flex;
+    display: none; /* Hidden by default */
     align-items: center;
     justify-content: center;
-    z-index: 9999;
+    z-index: 1000; /* For stacking, not visibility */
+    opacity: 0;
     transition: opacity 0.3s ease, visibility 0.3s ease;
+}
+
+#loading-overlay.active {
+    display: flex;
+    opacity: 1;
 }
 
 .dark #loading-overlay {
@@ -748,6 +757,54 @@ dark footer p {
 .social-links {
     display: flex;
     gap: 1rem;
+}
+
+/* Modal Stacking Context */
+#project-modal {
+    z-index: 100; /* Stacks above other content */
+    transform: translateZ(0);
+}
+
+#project-modal > div {
+    position: relative;
+    z-index: 1;
+}
+
+#modal-backdrop {
+    z-index: 9998;
+}
+
+/* Modal Panel */
+.modal-panel {
+    z-index: 10000;
+    transform: translateZ(0);
+    position: relative;
+}
+
+/* Modal Header */
+.modal-header {
+    position: relative;
+    z-index: 10001;
+}
+
+/* Modal Thumbnail Gallery */
+.modal-thumbnail-gallery {
+    position: relative;
+    z-index: 10;
+}
+
+/* 3D Viewer Container */
+#viewer-container {
+    transform-style: preserve-3d;
+    transform: translateZ(0);
+    position: relative;
+    z-index: 1;
+}
+
+/* Modal Content */
+.modal-content {
+    position: relative;
+    z-index: 1;
 }
 
 .social-link {

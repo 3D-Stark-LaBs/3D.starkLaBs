@@ -1,0 +1,96 @@
+[
+  {
+    "id": "post-3",
+    "title": "عربيه",
+    "material": "PLA",
+    "weight": 80,
+    "resolution": ".2",
+    "priceFrom": 500,
+    "priceTo": 600,
+    "printTime": "8 H",
+    "description": "asas fdsf dsfs",
+    "likes": 1505,
+    "date": "2025-07-11",
+    "thumbnail": "gallery/post-3/1.jpg",
+    "model": "gallery/post-3/model.stl",
+    "images": [
+      "gallery/post-3/1.jpg",
+      "gallery/post-3/2.jpg",
+      "gallery/post-3/3.jpg",
+      "gallery/post-3/4.jpg",
+      "gallery/post-3/5.jpg"
+    ],
+    "tags": []
+  },
+  {
+    "id": "post-1",
+    "title": "planer arm",
+    "material": "PETG",
+    "weight": 450,
+    "resolution": ".2",
+    "priceFrom": 800,
+    "priceTo": 900,
+    "printTime": "8 H",
+    "description": "asas fdsf dsfs",
+    "likes": 1200,
+    "date": "2025-07-11",
+    "thumbnail": "gallery/post-1/1.jpg",
+    "model": "gallery/post-1/model.stl",
+    "images": [
+      "gallery/post-1/1.jpg",
+      "gallery/post-1/2.jpg",
+      "gallery/post-1/3.jpg",
+      "gallery/post-1/4.jpg",
+      "gallery/post-1/5.jpg"
+    ],
+    "tags": []
+  },
+  {
+    "id": "post-1",
+    "title": "planer arm",
+    "material": "PETG",
+    "weight": 450,
+    "resolution": ".2",
+    "priceFrom": 800,
+    "priceTo": 900,
+    "printTime": "8 H",
+    "description": "asas fdsf dsfs",
+    "likes": 1200,
+    "date": "2025-07-11",
+    "thumbnail": "gallery/post-1/1.jpg",
+    "model": "gallery/post-1/model.stl",
+    "images": [
+      "gallery/post-1/1.jpg",
+      "gallery/post-1/2.jpg",
+      "gallery/post-1/3.jpg",
+      "gallery/post-1/4.jpg",
+      "gallery/post-1/5.jpg"
+    ],
+    "tags": []
+  },
+  {
+    "id": "post-1",
+    "title": "planer arm",
+    "material": "PETG",
+    "weight": 450,
+    "resolution": ".2",
+    "priceFrom": 800,
+    "priceTo": 900,
+    "printTime": "8 H",
+    "description": "asas fdsf dsfs",
+    "likes": 1200,
+    "date": "2025-07-11",
+    "thumbnail": "gallery/post-1/1.jpg",
+    "model": "gallery/post-1/model.stl",
+    "images": [
+      "gallery/post-1/1.jpg",
+      "gallery/post-1/2.jpg",
+      "gallery/post-1/3.jpg",
+      "gallery/post-1/4.jpg",
+      "gallery/post-1/5.jpg"
+    ],
+    "tags": []
+  }
+  
+]
+ 

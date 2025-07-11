@@ -385,6 +385,9 @@ function openModal(project) {
     }
 }
 
+// Make showProjectModal available globally for testing
+window.showProjectModal = showProjectModal;
+
 function openProjectModal(project) {
     if (!project) {
         console.error('No project data provided');
@@ -401,15 +404,25 @@ function showProjectModal(project) {
 
     const modal = document.getElementById('project-modal');
     const backdrop = document.getElementById('modal-backdrop');
-    const closeButton = document.getElementById('close-modal');
+    const closeButton = document.getElementById('modal-close-button');
+    const mainImage = document.getElementById('modal-main-image');
+    const thumbnailGallery = document.getElementById('modal-thumbnail-gallery');
+    const prevButton = document.getElementById('modal-prev-image');
+    const nextButton = document.getElementById('modal-next-image');
+    const downloadStlBtn = document.getElementById('modal-download-stl');
+    const addToCartBtn = document.getElementById('modal-add-to-cart');
     
-    if (!modal || !backdrop || !closeButton) {
-        console.error('Modal elements not found');
+    if (!modal || !backdrop || !closeButton || !mainImage || !thumbnailGallery) {
+        console.error('Required modal elements not found');
         return;
     }
     
     // Store current project for keyboard events
     window.currentModalProject = project;
+    
+    // Get all images for the gallery (use thumbnail as first image if available)
+    const projectImages = [project.thumbnail, ...(project.images || [])].filter(Boolean);
+    let currentImageIndex = 0;
     
     // Helper function to safely set text content
     const setTextContent = (id, text) => {
@@ -422,18 +435,78 @@ function showProjectModal(project) {
     };
     
     // Set modal content with null checks
-    setTextContent('modal-title', project.title || 'Project Title');
-    setTextContent('modal-description', project.description || 'No description available');
-    setTextContent('modal-material', project.material || 'PLA');
-    setTextContent('modal-weight', project.weight ? `${project.weight}g` : '-');
-    setTextContent('modal-resolution', project.resolution || '0.2mm');
-    setTextContent('modal-print-time', project.printTime || '-');
+    setTextContent('modal-project-title', project.title || 'Project Title');
+    setTextContent('modal-project-description', project.description || 'No description available');
+    setTextContent('modal-project-material', project.material || 'PLA');
+    setTextContent('modal-project-weight', project.weight ? `${project.weight}g` : 'N/A');
+    setTextContent('modal-project-resolution', project.resolution ? `${project.resolution}mm` : 'N/A');
+    setTextContent('modal-project-print-time', project.printTime || 'N/A');
     
     // Set price range
     const priceRange = project.priceFrom && project.priceTo 
-        ? `${project.priceFrom} - ${project.priceTo} EGP` 
+        ? `${formatPrice(project.priceFrom)} - ${formatPrice(project.priceTo)}` 
         : 'Contact for quote';
-    setTextContent('modal-price-range', priceRange);
+    setTextContent('modal-project-price', priceRange);
+    
+    // Set up image gallery
+    function updateMainImage(index) {
+        if (projectImages.length === 0) return;
+        
+        // Ensure index is within bounds
+        currentImageIndex = (index + projectImages.length) % projectImages.length;
+        
+        // Update main image with fade transition
+        if (mainImage) {
+            mainImage.style.opacity = '0';
+            setTimeout(() => {
+                mainImage.src = projectImages[currentImageIndex];
+                mainImage.alt = `${project.title || 'Project'} image ${currentImageIndex + 1}`;
+                mainImage.style.opacity = '1';
+            }, 150);
+        }
+        
+        // Update active thumbnail
+        const thumbnails = thumbnailGallery.querySelectorAll('.thumbnail-btn');
+        thumbnails.forEach((thumb, i) => {
+            if (i === currentImageIndex) {
+                thumb.classList.add('ring-2', 'ring-brand-indigo');
+                thumb.setAttribute('aria-selected', 'true');
+            } else {
+                thumb.classList.remove('ring-2', 'ring-brand-indigo');
+                thumb.setAttribute('aria-selected', 'false');
+            }
+        });
+    }
+    
+    // Initialize thumbnails
+    function initThumbnails() {
+        thumbnailGallery.innerHTML = ''; // Clear existing thumbnails
+        
+        if (projectImages.length <= 1) {
+            prevButton.style.display = 'none';
+            nextButton.style.display = 'none';
+            return;
+        }
+        
+        prevButton.style.display = 'flex';
+        nextButton.style.display = 'flex';
+        
+        projectImages.forEach((image, index) => {
+            const button = document.createElement('button');
+            button.type = 'button';
+            button.className = `w-16 h-16 flex-shrink-0 rounded overflow-hidden border-2 transition-all ${
+                index === currentImageIndex 
+                    ? 'ring-2 ring-brand-indigo dark:ring-brand-yellow ring-offset-2' 
+                    : 'border-transparent'
+            }`;
+            button.innerHTML = `<img src="${image}" alt="Thumbnail ${index + 1}" class="w-full h-full object-cover">`;
+            button.addEventListener('click', () => updateMainImage(index));
+            button.setAttribute('aria-label', `View image ${index + 1}`);
+            button.setAttribute('aria-selected', index === currentImageIndex);
+            button.setAttribute('role', 'tab');
+            thumbnailGallery.appendChild(button);
+        });
+    }
     
     // Set like button state
     const likeButton = document.querySelector('.like-button');
@@ -510,7 +583,6 @@ function showProjectModal(project) {
     } // Close the like button click handler
     
     // Set up STL download link
-    const downloadStlBtn = document.getElementById('download-stl');
     if (downloadStlBtn) {
         if (project.model) {
             // Set up download with proper filename
@@ -522,12 +594,12 @@ function showProjectModal(project) {
             // Add click handler for better feedback and error handling
             downloadStlBtn.onclick = async (e) => {
                 e.preventDefault();
-                const originalText = downloadStlBtn.innerHTML;
+                const originalHtml = downloadStlBtn.innerHTML;
                 
                 try {
                     // Show downloading state
                     downloadStlBtn.innerHTML = `
-                        <svg class="animate-spin -ml-1 mr-2 h-4 w-4 text-gray-700 dark:text-white" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
+                        <svg class="animate-spin -ml-1 mr-2 h-5 w-5 text-white" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
                             <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>
                             <path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
                         </svg>
@@ -555,32 +627,26 @@ function showProjectModal(project) {
                     
                     // Show success feedback
                     downloadStlBtn.innerHTML = `
-                        <svg class="-ml-1 mr-2 h-4 w-4 text-green-500" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor">
+                        <svg class="-ml-1 mr-2 h-5 w-5 text-green-400" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor">
                             <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd" />
                         </svg>
                         Download Complete
                     `;
-                    
-                    // Revert to original state after a delay
-                    setTimeout(() => {
-                        downloadStlBtn.innerHTML = originalText;
-                        downloadStlBtn.classList.remove('cursor-wait');
-                    }, 2000);
                     
                 } catch (error) {
                     console.error('Error downloading STL:', error);
                     
                     // Show error state
                     downloadStlBtn.innerHTML = `
-                        <svg class="-ml-1 mr-2 h-4 w-4 text-red-500" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor">
+                        <svg class="-ml-1 mr-2 h-5 w-5 text-red-400" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor">
                             <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zM8.707 7.293a1 1 0 00-1.414 1.414L8.586 10l-1.293 1.293a1 1 0 101.414 1.414L10 11.414l1.293 1.293a1 1 0 001.414-1.414L11.414 10l1.293-1.293a1 1 0 00-1.414-1.414L10 8.586 8.707 7.293z" clip-rule="evenodd" />
                         </svg>
                         Download Failed
                     `;
-                    
+                } finally {
                     // Revert to original state after a delay
                     setTimeout(() => {
-                        downloadStlBtn.innerHTML = originalText;
+                        downloadStlBtn.innerHTML = originalHtml;
                         downloadStlBtn.classList.remove('cursor-wait');
                     }, 2000);
                 }
@@ -593,61 +659,212 @@ function showProjectModal(project) {
         }
     }
     
-    // Close modal function
-    const closeModal = () => {
-        modal.classList.add('opacity-0', 'scale-95');
-        backdrop.classList.add('opacity-0');
+    // Initialize the modal
+    function initModal() {
+        // Initialize the image gallery
+        initThumbnails();
         
-        // Wait for animation to complete before hiding
-        setTimeout(() => {
-            modal.classList.add('hidden');
-            document.body.style.overflow = ''; // Re-enable scrolling
-            document.removeEventListener('keydown', handleKeyDown);
-        }, 200);
-    };
-    
-    // Keyboard event handler
-    const handleKeyDown = (e) => {
-        if (e.key === 'Escape') {
-            closeModal();
+        // Set initial image with proper error handling
+        if (projectImages.length > 0) {
+            mainImage.onload = () => {
+                mainImage.style.opacity = '1';
+                mainImage.classList.remove('opacity-0');
+            };
+            mainImage.onerror = () => {
+                mainImage.src = 'data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSI0MDAiIGhlaWdodD0iNDAwIiB2aWV3Qm94PSIwIDAgMjQgMjQiIGZpbGw9Im5vbmUiIHN0cm9rZT0iI2QxZDVkYiIgc3Ryb2tlLXdpZHRoPSIyIiBzdHJva2UtbGluZWNhcD0icm91bmQiIHN0cm9rZS1saW5lam9pbj0icm91bmQiPjxwYXRoIGQ9Ik0xOCAxM0g2Ii8+PHBhdGggZD0iTTEyIDZ2NiIvPjwvc3ZnPg==';
+                mainImage.alt = 'Image failed to load';
+                mainImage.classList.add('opacity-30');
+            };
+            updateMainImage(0);
+        } else {
+            // Show placeholder if no images
+            mainImage.src = 'data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSI0MDAiIGhlaWdodD0iNDAwIiB2aWV3Qm94PSIwIDAgMjQgMjQiIGZpbGw9Im5vbmUiIHN0cm9rZT0iI2QxZDVkYiIgc3Ryb2tlLXdpZHRoPSIyIiBzdHJva2UtbGluZWNhcD0icm91bmQiIHN0cm9rZS1saW5lam9pbj0icm91bmQiPjxwYXRoIGQ9Ik0xOCAxM0g2Ii8+PHBhdGggZD0iTTEyIDZ2NiIvPjwvc3ZnPg==';
+            mainImage.alt = 'No image available';
+            mainImage.classList.add('opacity-30');
         }
-    };
+        
+        // Set up navigation buttons with proper event delegation
+        const handlePrevClick = (e) => {
+            e.stopPropagation();
+            updateMainImage(currentImageIndex - 1);
+        };
+        
+        const handleNextClick = (e) => {
+            e.stopPropagation();
+            updateMainImage(currentImageIndex + 1);
+        };
+        
+        prevButton.removeEventListener('click', handlePrevClick); // Remove existing to prevent duplicates
+        nextButton.removeEventListener('click', handleNextClick);
+        
+        prevButton.addEventListener('click', handlePrevClick);
+        nextButton.addEventListener('click', handleNextClick);
+        
+        // Set up keyboard navigation
+        const handleKeyDown = (e) => {
+            if (!modal || modal.classList.contains('hidden')) return;
+            
+            switch (e.key) {
+                case 'Escape':
+                    closeModal();
+                    break;
+                case 'ArrowLeft':
+                    updateMainImage(currentImageIndex - 1);
+                    e.preventDefault();
+                    break;
+                case 'ArrowRight':
+                    updateMainImage(currentImageIndex + 1);
+                    e.preventDefault();
+                    break;
+            }
+        };
+        
+        // Remove existing keydown listener to prevent duplicates
+        document.removeEventListener('keydown', handleKeyDown);
+        document.addEventListener('keydown', handleKeyDown);
+        
+        // Add to cart functionality
+        if (addToCartBtn) {
+            addToCartBtn.onclick = (e) => {
+                e.preventDefault();
+                // Add to cart logic here
+                console.log('Added to cart:', project);
+                // You can add a notification or cart update logic here
+                
+                // Visual feedback
+                const originalText = addToCartBtn.innerHTML;
+                addToCartBtn.innerHTML = `
+                    <svg class="-ml-1 mr-2 h-5 w-5 text-white" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor">
+                        <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 111.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd" />
+                    </svg>
+                    Added to Cart
+                `;
+                
+                setTimeout(() => {
+                    addToCartBtn.innerHTML = originalText;
+                }, 2000);
+            };
+        }
+        
+        // Close modal function
+        const closeModal = () => {
+            modal.classList.add('opacity-0', 'scale-95');
+            backdrop.classList.add('opacity-0');
+            
+            // Wait for animation to complete before hiding
+            setTimeout(() => {
+                modal.classList.add('hidden');
+                document.body.style.overflow = ''; // Re-enable scrolling
+                document.removeEventListener('keydown', handleKeyDown);
+                
+                // Clean up event listeners
+                prevButton.onclick = null;
+                nextButton.onclick = null;
+                if (addToCartBtn) addToCartBtn.onclick = null;
+            }, 200);
+        };
+        
+        // Set up close button with proper event handling
+        const handleCloseButtonClick = (e) => {
+            e.preventDefault();
+            e.stopPropagation();
+            closeModal();
+        };
+        
+        const handleBackdropClick = (e) => {
+            if (e.target === backdrop) {
+                closeModal();
+            }
+        };
+        
+        // Remove existing event listeners to prevent duplicates
+        closeButton.removeEventListener('click', handleCloseButtonClick);
+        backdrop.removeEventListener('click', handleBackdropClick);
+        
+        // Add new event listeners
+        closeButton.addEventListener('click', handleCloseButtonClick);
+        backdrop.addEventListener('click', handleBackdropClick);
+        
+        // Prevent modal from closing when clicking inside content
+        const modalContent = modal.querySelector('.bg-white, .dark\\:bg-dark-800');
+        if (modalContent) {
+            modalContent.onclick = (e) => e.stopPropagation();
+        }
+        
+        // Show modal with animation
+        document.body.style.overflow = 'hidden'; // Prevent scrolling
+        modal.classList.remove('hidden');
+        
+        // Force reflow to ensure the element is in the DOM before starting animation
+        void modal.offsetHeight;
+        
+        // Start animation
+        requestAnimationFrame(() => {
+            modal.classList.add('opacity-100');
+            backdrop.classList.add('opacity-100');
+            
+            // Focus the close button for better keyboard navigation
+            closeButton.focus();
+            
+            // Set focus trap for better accessibility
+            const focusableElements = modal.querySelectorAll('button, [href], input, select, textarea, [tabindex]:not([tabindex="-1"])');
+            const firstFocusable = focusableElements[0];
+            const lastFocusable = focusableElements[focusableElements.length - 1];
+            
+            // Handle keyboard focus trap
+            modal.addEventListener('keydown', (e) => {
+                if (e.key === 'Tab') {
+                    if (e.shiftKey && document.activeElement === firstFocusable) {
+                        e.preventDefault();
+                        lastFocusable.focus();
+                    } else if (!e.shiftKey && document.activeElement === lastFocusable) {
+                        e.preventDefault();
+                        firstFocusable.focus();
+                    }
+                }
+            });
+        });
+    }
     
-    // Set up close button
-    closeButton.onclick = closeModal;
-    
-    // Close when clicking on backdrop
-    backdrop.onclick = closeModal;
-    
-    // Prevent modal from closing when clicking inside
-    modal.querySelector('.bg-white, .dark\\:bg-dark-800').onclick = (e) => {
-        e.stopPropagation();
-    };
-    
-    // Add keyboard event listener
-    document.addEventListener('keydown', handleKeyDown);
-    
-    // Show modal with animation
-    document.body.style.overflow = 'hidden'; // Prevent scrolling
-    modal.classList.remove('hidden');
-    setTimeout(() => {
-        modal.classList.remove('opacity-0', 'scale-95');
-        backdrop.classList.remove('opacity-0');
-    }, 10);
+    // Initialize the modal
+    initModal();
 }
 
 // Close modal function
-
 function closeModal() {
     const modal = document.getElementById('project-modal');
-    modal.classList.add('opacity-0', 'scale-95');
-    document.getElementById('modal-backdrop').classList.add('opacity-0');
+    const backdrop = document.getElementById('modal-backdrop');
+    
+    if (!modal || !backdrop) return;
+    
+    // Start close animation
+    modal.classList.remove('opacity-100');
+    backdrop.classList.remove('opacity-100');
     
     // Wait for animation to complete before hiding
     setTimeout(() => {
         modal.classList.add('hidden');
         document.body.style.overflow = ''; // Re-enable scrolling
-        document.removeEventListener('keydown', handleKeyDown);
+        
+        // Clean up any modal-specific event listeners
+        const prevButton = document.getElementById('modal-prev-image');
+        const nextButton = document.getElementById('modal-next-image');
+        const closeButton = document.getElementById('modal-close-button');
+        
+        if (prevButton) prevButton.onclick = null;
+        if (nextButton) nextButton.onclick = null;
+        if (closeButton) closeButton.onclick = null;
+        
+        // Reset modal state
+        const mainImage = document.getElementById('modal-main-image');
+        if (mainImage) {
+            mainImage.src = '';
+            mainImage.onload = null;
+            mainImage.onerror = null;
+        }
+        
+        // Clear the current project reference
+        window.currentModalProject = null;
     }, 200);
 }
 
@@ -881,8 +1098,9 @@ async function renderGallery() {
         `;
 
         const galleryData = await fetchGalleryData();
-        // Store the gallery data in appState for later use
+        // Store the gallery data in appState and window for modal triggers
         appState.galleryData = galleryData;
+        window.projectData = galleryData; // Make project data globally available
         
         if (!galleryData || galleryData.length === 0) {
             galleryContainer.innerHTML = `
@@ -910,6 +1128,19 @@ async function renderGallery() {
         // Generate gallery HTML
         const galleryHTML = sortedData.map(createGalleryItem).join('');
         galleryContainer.innerHTML = galleryHTML;
+        
+        // Add click handlers for view project buttons using event delegation
+        document.addEventListener('click', function(e) {
+            const viewProjectBtn = e.target.closest('.view-project-btn');
+            if (viewProjectBtn) {
+                e.preventDefault();
+                const projectId = viewProjectBtn.dataset.projectId;
+                const project = window.projectData.find(p => p.id === projectId);
+                if (project) {
+                    openProjectModal(project);
+                }
+            }
+        });
 
     } catch (error) {
         console.error('Error rendering gallery:', error);
@@ -1229,25 +1460,13 @@ class SPANavigator {
     
     showLoading() {
         if (this.loadingOverlay) {
-            this.loadingOverlay.style.display = 'flex';
-            this.loadingOverlay.style.visibility = 'visible';
-            // Force reflow to ensure the transition works
-            void this.loadingOverlay.offsetWidth;
-            this.loadingOverlay.style.opacity = '1';
+            this.loadingOverlay.classList.add('active');
         }
     }
-    
+
     hideLoading() {
         if (this.loadingOverlay) {
-            this.loadingOverlay.style.opacity = '0';
-            
-            // Wait for the fade out transition to complete
-            setTimeout(() => {
-                if (this.loadingOverlay) {
-                    this.loadingOverlay.style.visibility = 'hidden';
-                    this.loadingOverlay.style.display = 'none';
-                }
-            }, 300);
+            this.loadingOverlay.classList.remove('active');
         }
     }
 }
@@ -1316,16 +1535,21 @@ document.addEventListener('visibilitychange', () => {
 // Add smooth scrolling for navigation links
 document.querySelectorAll('a[href^="#"]').forEach(anchor => {
     anchor.addEventListener('click', function (e) {
-        e.preventDefault();
-        const targetId = this.getAttribute('href');
-        if (targetId === '#') return;
-        
-        const targetElement = document.querySelector(targetId);
-        if (targetElement) {
-            window.scrollTo({
-                top: targetElement.offsetTop - 80, // Account for fixed header
-                behavior: 'smooth'
-            });
+        try {
+            e.preventDefault();
+            const targetId = this.getAttribute('href');
+            if (!targetId || targetId === '#') return;
+            
+            const targetElement = document.querySelector(targetId);
+            if (targetElement && typeof targetElement.offsetTop === 'number') {
+                window.scrollTo({
+                    top: targetElement.offsetTop - 80, // Account for fixed header
+                    behavior: 'smooth'
+                });
+            }
+        } catch (error) {
+            console.error('Error in smooth scrolling:', error);
         }
     });
 });
+
