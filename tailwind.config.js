@@ -26,7 +26,6 @@ module.exports = {
       },
       fontFamily: {
         sans: ['Inter', 'sans-serif'],
-        'tajawal': ['Tajawal', 'sans-serif'],
       },
       transitionProperty: {
         'colors': 'color, background-color, border-color, text-decoration-color, fill, stroke',
