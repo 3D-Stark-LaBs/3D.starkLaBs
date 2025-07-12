@@ -96,12 +96,6 @@
 
         <!-- Hero Section -->
         <section id="hero" class="relative h-screen flex items-center justify-center overflow-hidden" dir="auto">
-            <!-- Background Image with Overlay -->
-            <div class="absolute inset-0 z-0">
-                <img src="./asits/panar.png" alt="3D Printing Background" class="w-full h-full object-cover animate-zoom-in">
-                <div class="absolute inset-0 bg-black/50 dark:bg-black/70 transition-colors duration-300"></div>
-            </div>
-            
             <!-- Hero Content -->
             <div class="container mx-auto px-4 sm:px-6 lg:px-8 relative z-10 text-center animate-fade-in">
                 <div class="max-w-4xl mx-auto">
@@ -199,7 +193,7 @@
         </section>
 
         <section id="gallery" class="section min-h-screen py-20 bg-gray-50 dark:bg-dark-800 hidden opacity-0 transition-opacity duration-300">
-            <div class="container mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="px-4 sm:px-6 lg:px-8 w-full">
                 <h2 class="text-3xl sm:text-4xl font-bold text-center mb-12 relative inline-block">
                     <span>Our Work</span>
                     <span class="absolute bottom-[-8px] left-1/2 w-16 h-1 bg-gradient-to-r from-brand-yellow to-brand-orange rounded-full transform -translate-x-1/2"></span>
@@ -384,42 +378,20 @@
         </section>
     </div>
 
-    <!-- Modal content -->
-    <div class="bg-white dark:bg-dark-800 p-6 sm:p-8">
-        <div class="md:flex gap-8">
-            <!-- Left Column - Media -->
-            <div class="w-full md:w-1/2 space-y-6">
-                <!-- Main Image -->
-                <div class="relative rounded-xl overflow-hidden bg-gray-100 dark:bg-dark-700 aspect-square shadow-lg">
-                    <img id="modal-main-image" src="" alt="Project image" class="w-full h-full object-cover transition-opacity duration-300">
-    <section id="gallery" class="py-20 bg-gray-50 dark:bg-dark-800">
-        <div class="container mx-auto px-4 sm:px-6 lg:px-8">
-            <h2 class="text-3xl sm:text-4xl font-bold text-center mb-12 relative inline-block">
-                Our Work
-                <span class="absolute bottom-[-8px] left-1/2 w-16 h-1 bg-gradient-to-r from-brand-indigo to-brand-purple rounded-full transform -translate-x-1/2"></span>
-            </h2>
-            <div id="gallery-container" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
-                <!-- Project cards will be dynamically inserted here by JavaScript -->
-                <div class="text-center py-8">
-                    <div class="animate-spin rounded-full h-12 w-12 border-t-2 border-b-2 border-brand-indigo mx-auto"></div>
-                    <p class="mt-4 text-gray-600 dark:text-gray-400">Loading projects...</p>
-                </div>
-            </div>
-        </div>
-    </section>
-
+    <!-- Footer -->
     <footer class="bg-white dark:bg-dark-900 border-t border-gray-200 dark:border-dark-800 py-8">
         <div class="container mx-auto px-4 sm:px-6 lg:px-8">
             <p class="text-sm text-center text-gray-600 dark:text-gray-400">&copy; 2025 3D Stark Labs. All rights reserved.</p>
         </div>
     </footer>
 
+    <!-- Back to Top Button -->
     <a href="#" id="back-to-top" class="fixed bottom-6 right-6 w-12 h-12 rounded-full bg-gradient-to-r from-brand-indigo to-brand-purple text-white flex items-center justify-center shadow-lg hover:shadow-xl transform hover:-translate-y-1 transition-all duration-300 opacity-0 invisible">
         ↑
     </a>
 
     <!-- Project Modal -->
-    <div id="project-modal" class="fixed inset-0 z-[9998] flex items-center justify-center p-4 hidden opacity-0 transition-opacity duration-300" role="dialog" aria-modal="true" aria-labelledby="modal-title">
+    <div id="project-modal" class="fixed inset-0 z-[9998] items-center justify-center p-4 hidden opacity-0 transition-opacity duration-300" role="dialog" aria-modal="true" aria-labelledby="modal-title">
         <!-- Modal Backdrop -->
         <div id="modal-backdrop" class="fixed inset-0 bg-black/60 backdrop-blur-sm"></div>
 
@@ -443,32 +415,31 @@
                             <div class="relative group">
                                 <!-- Carousel Container -->
                                 <div id="image-carousel" class="relative rounded-xl overflow-hidden bg-gray-100 dark:bg-dark-700 aspect-square shadow-lg">
-                                    <img id="modal-main-image" src="" alt="" class="w-full h-full object-cover transition-opacity duration-300">
                                     <!-- Slides Container -->
                                     <div id="carousel-slides" class="flex h-full transition-transform duration-300 ease-out">
                                         <!-- Slides will be inserted here by JavaScript -->
                                     </div>
                                     
                                     <!-- Navigation Arrows -->
-                                    <button id="modal-prev-image" class="absolute left-3 top-1/2 -translate-y-1/2 w-10 h-10 flex items-center justify-center rounded-full bg-white/80 dark:bg-dark-800/80 text-gray-800 dark:text-white shadow-md hover:bg-white dark:hover:bg-dark-700 focus:outline-none focus:ring-2 focus:ring-brand-indigo transition-all opacity-0 group-hover:opacity-100" aria-label="Previous image">
+                                    <button id="modal-prev-image" class="absolute left-3 top-1/2 -translate-y-1/2 w-10 h-10 flex items-center justify-center rounded-full bg-white/80 dark:bg-dark-800/80 text-gray-800 dark:text-white shadow-md hover:bg-white dark:hover:bg-dark-700 focus:outline-none focus:ring-2 focus:ring-brand-indigo transition-all opacity-0 group-hover:opacity-100 z-10" aria-label="Previous image">
                                         <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
                                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"></path>
                                         </svg>
                                     </button>
-                                    <button id="modal-next-image" class="absolute right-3 top-1/2 -translate-y-1/2 w-10 h-10 flex items-center justify-center rounded-full bg-white/80 dark:bg-dark-800/80 text-gray-800 dark:text-white shadow-md hover:bg-white dark:hover:bg-dark-700 focus:outline-none focus:ring-2 focus:ring-brand-indigo transition-all opacity-0 group-hover:opacity-100" aria-label="Next image">
+                                    <button id="modal-next-image" class="absolute right-3 top-1/2 -translate-y-1/2 w-10 h-10 flex items-center justify-center rounded-full bg-white/80 dark:bg-dark-800/80 text-gray-800 dark:text-white shadow-md hover:bg-white dark:hover:bg-dark-700 focus:outline-none focus:ring-2 focus:ring-brand-indigo transition-all opacity-0 group-hover:opacity-100 z-10" aria-label="Next image">
                                         <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
                                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path>
                                         </svg>
                                     </button>
                                     
                                     <!-- Slide Indicators -->
-                                    <div id="carousel-indicators" class="absolute bottom-4 left-0 right-0 flex justify-center space-x-2">
+                                    <div id="carousel-indicators" class="absolute bottom-4 left-0 right-0 flex justify-center space-x-2 z-10">
                                         <!-- Indicators will be inserted here by JavaScript -->
                                     </div>
                                 </div>
                                 
                                 <!-- Loading State -->
-                                <div id="carousel-loading" class="absolute inset-0 flex items-center justify-center bg-gray-100 dark:bg-dark-800 rounded-xl">
+                                <div id="carousel-loading" class="absolute inset-0 flex items-center justify-center bg-gray-100 dark:bg-dark-800 rounded-xl z-20">
                                     <div class="animate-pulse flex flex-col items-center space-y-2">
                                         <div class="w-12 h-12 rounded-full bg-gray-300 dark:bg-dark-700"></div>
                                         <div class="text-sm text-gray-500 dark:text-gray-400">Loading images...</div>
@@ -477,7 +448,7 @@
                             </div>
                             
                             <!-- Thumbnails (for desktop) -->
-                            <div id="modal-thumbnail-gallery" class="hidden md:flex space-x-3 overflow-x-auto py-1 -mx-1">
+                            <div id="modal-thumbnail-gallery" class="hidden md:flex space-x-3 overflow-x-auto py-1 -mx-1 mt-4">
                                 <!-- Thumbnails will be inserted here by JavaScript -->
                             </div>
                             

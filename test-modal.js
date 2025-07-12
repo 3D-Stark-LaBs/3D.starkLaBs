@@ -77,9 +77,7 @@ waitForMainScript(() => {
                 actual: title 
             });
             
-            // Verify images are loaded
-            const mainImage = document.getElementById('modal-main-image');
-            console.assert(mainImage, 'Main image should exist');
+            // Main image element has been removed from the DOM
             
             // Run tests sequentially
             try {

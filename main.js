@@ -405,14 +405,14 @@ function showProjectModal(project) {
     const modal = document.getElementById('project-modal');
     const backdrop = document.getElementById('modal-backdrop');
     const closeButton = document.getElementById('modal-close-button');
-    const mainImage = document.getElementById('modal-main-image');
     const thumbnailGallery = document.getElementById('modal-thumbnail-gallery');
     const prevButton = document.getElementById('modal-prev-image');
     const nextButton = document.getElementById('modal-next-image');
     const downloadStlBtn = document.getElementById('modal-download-stl');
     const addToCartBtn = document.getElementById('modal-add-to-cart');
+    const carouselSlides = document.getElementById('carousel-slides');
     
-    if (!modal || !backdrop || !closeButton || !mainImage || !thumbnailGallery) {
+    if (!modal || !backdrop || !closeButton || !thumbnailGallery || !carouselSlides) {
         console.error('Required modal elements not found');
         return;
     }
@@ -452,30 +452,38 @@ function showProjectModal(project) {
     function updateMainImage(index) {
         if (projectImages.length === 0) return;
         
-        // Ensure index is within bounds
-        currentImageIndex = (index + projectImages.length) % projectImages.length;
+        const imageUrl = projectImages[index];
+        const projectTitle = project?.title || 'Project';
         
-        // Update main image with fade transition
-        if (mainImage) {
-            mainImage.style.opacity = '0';
-            setTimeout(() => {
-                mainImage.src = projectImages[currentImageIndex];
-                mainImage.alt = `${project.title || 'Project'} image ${currentImageIndex + 1}`;
-                mainImage.style.opacity = '1';
-            }, 150);
-        }
+        // Update carousel slides
+        carouselSlides.innerHTML = '';
+        const slide = document.createElement('div');
+        slide.className = 'slide min-w-full h-full flex-shrink-0';
+        slide.innerHTML = `<img src="${imageUrl}" alt="${projectTitle} - Image ${index + 1}" class="w-full h-full object-cover transition-opacity duration-300">`;
+        carouselSlides.appendChild(slide);
         
         // Update active thumbnail
-        const thumbnails = thumbnailGallery.querySelectorAll('.thumbnail-btn');
+        const thumbnails = thumbnailGallery.querySelectorAll('button');
         thumbnails.forEach((thumb, i) => {
-            if (i === currentImageIndex) {
-                thumb.classList.add('ring-2', 'ring-brand-indigo');
-                thumb.setAttribute('aria-selected', 'true');
-            } else {
-                thumb.classList.remove('ring-2', 'ring-brand-indigo');
-                thumb.setAttribute('aria-selected', 'false');
+            const isActive = i === index;
+            thumb.setAttribute('aria-selected', isActive ? 'true' : 'false');
+            thumb.classList.toggle('ring-2', isActive);
+            thumb.classList.toggle('ring-offset-2', isActive);
+            thumb.classList.toggle('ring-brand-indigo', isActive);
+            thumb.classList.toggle('dark:ring-brand-yellow', isActive);
+            
+            // Update border based on active state
+            const img = thumb.querySelector('img');
+            if (img) {
+                img.classList.toggle('opacity-100', isActive);
+                img.classList.toggle('opacity-50', !isActive);
             }
         });
+        
+        // Update carousel position if it exists
+        if (window.carousel) {
+            window.carousel.goToSlide(index);
+        }
     }
     
     // Initialize thumbnails
@@ -666,15 +674,21 @@ function showProjectModal(project) {
         
         // Set initial image with proper error handling
         if (projectImages.length > 0) {
-            mainImage.onload = () => {
-                mainImage.style.opacity = '1';
-                mainImage.classList.remove('opacity-0');
-            };
-            mainImage.onerror = () => {
-                mainImage.src = 'data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSI0MDAiIGhlaWdodD0iNDAwIiB2aWV3Qm94PSIwIDAgMjQgMjQiIGZpbGw9Im5vbmUiIHN0cm9rZT0iI2QxZDVkYiIgc3Ryb2tlLXdpZHRoPSIyIiBzdHJva2UtbGluZWNhcD0icm91bmQiIHN0cm9rZS1saW5lam9pbj0icm91bmQiPjxwYXRoIGQ9Ik0xOCAxM0g2Ii8+PHBhdGggZD0iTTEyIDZ2NiIvPjwvc3ZnPg==';
-                mainImage.alt = 'Image failed to load';
-                mainImage.classList.add('opacity-30');
-            };
+            const currentSlide = carouselSlides.querySelector('.slide:first-child');
+            if (currentSlide) {
+                const img = currentSlide.querySelector('img');
+                if (img) {
+                    img.onload = () => {
+                        img.style.opacity = '1';
+                        img.classList.remove('opacity-0');
+                    };
+                    img.onerror = () => {
+                        img.src = 'data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSI0MDAiIGhlaWdodD0iNDAwIiB2aWV3Qm94PSIwIDAgMjQgMjQiIGZpbGw9Im5vbmUiIHN0cm9rZT0iI2QxZDVkYiIgc3Ryb2tlLXdpZHRoPSIyIiBzdHJva2UtbGluZWNhcD0icm91bmQiIHN0cm9rZS1saW5lam9pbj0icm91bmQiPjxwYXRoIGQ9Ik0xOCAxM0g2Ii8+PHBhdGggZD0iTTEyIDZ2NiIvPjwvc3ZnPg==';
+                        img.alt = 'Image failed to load';
+                        img.classList.add('opacity-30');
+                    };
+                }
+            }
             updateMainImage(0);
         } else {
             // Show placeholder if no images
@@ -753,6 +767,7 @@ function showProjectModal(project) {
             
             // Wait for animation to complete before hiding
             setTimeout(() => {
+                modal.classList.remove('flex');
                 modal.classList.add('hidden');
                 document.body.style.overflow = ''; // Re-enable scrolling
                 document.removeEventListener('keydown', handleKeyDown);
@@ -793,7 +808,8 @@ function showProjectModal(project) {
         
         // Show modal with animation
         document.body.style.overflow = 'hidden'; // Prevent scrolling
-        modal.classList.remove('hidden');
+        modal.classList.add('flex');
+    modal.classList.remove('hidden');
         
         // Force reflow to ensure the element is in the DOM before starting animation
         void modal.offsetHeight;
@@ -1538,7 +1554,11 @@ document.querySelectorAll('a[href^="#"]').forEach(anchor => {
         try {
             e.preventDefault();
             const targetId = this.getAttribute('href');
-            if (!targetId || targetId === '#') return;
+            
+            // Only process if it's a valid element ID (starts with # followed by a letter)
+            if (!targetId || !/^#[a-zA-Z][\w-]*$/.test(targetId)) {
+                return;
+            }
             
             const targetElement = document.querySelector(targetId);
             if (targetElement && typeof targetElement.offsetTop === 'number') {

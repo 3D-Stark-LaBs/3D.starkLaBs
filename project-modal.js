@@ -5,7 +5,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const closeButton = document.getElementById('modal-close-button');
     const prevButton = document.getElementById('modal-prev-image');
     const nextButton = document.getElementById('modal-next-image');
-    const mainImage = document.getElementById('modal-main-image');
+    const carouselSlides = document.getElementById('carousel-slides');
     const thumbnailGallery = document.getElementById('modal-thumbnail-gallery');
     const downloadButton = document.getElementById('modal-download-stl');
     const addToCartButton = document.getElementById('modal-add-to-cart');
@@ -75,16 +75,18 @@ document.addEventListener('DOMContentLoaded', () => {
         prevButton.style.display = hasMultipleImages ? 'flex' : 'none';
         nextButton.style.display = hasMultipleImages ? 'flex' : 'none';
         
-        // Update the main image
-        if (images.length > 0) {
-            mainImage.src = images[currentImageIndex];
-            mainImage.alt = `${currentProject.title} - Image ${currentImageIndex + 1}`;
-            mainImage.removeAttribute('aria-hidden');
-        } else {
-            mainImage.src = ''; // Or a placeholder image
-            mainImage.alt = 'No image available';
-            mainImage.setAttribute('aria-hidden', 'true');
+        // Update carousel slides
+        carouselSlides.innerHTML = '';
+        if (images.length === 0) {
+            console.warn('No images available for this project');
+            return;
         }
+        
+        // Add current image to carousel
+        const slide = document.createElement('div');
+        slide.className = 'min-w-full h-full flex-shrink-0';
+        slide.innerHTML = `<img src="${images[currentImageIndex]}" alt="${currentProject.title || 'Project image'}" class="w-full h-full object-cover">`;
+        carouselSlides.appendChild(slide);
 
         // Rebuild thumbnails
         thumbnailGallery.innerHTML = '';
@@ -176,16 +178,15 @@ document.addEventListener('DOMContentLoaded', () => {
     // --- INITIALIZATION ---
 
     // Find all project cards on the page and make them clickable.
-    // This should be run once the page is loaded.
-    initializeProjectCards();
-
-    // If you load project cards dynamically (e.g., via fetch),
-    // you will need to call initializeProjectCards() again after they are rendered.
-    // For example:
-    // fetch('/api/projects')
-    //   .then(res => res.json())
-    //   .then(projects => {
-    //     renderProjectsToPage(projects); // Your function to add cards to the DOM
-    //     initializeProjectCards();       // Re-run this to attach listeners to the new cards
-    //   });
+    // Initialize the modal when the page loads
+    document.addEventListener('DOMContentLoaded', () => {
+        // Initialize any project cards that are already in the DOM
+        initializeProjectCards();
+        
+        // Make sure the carousel slides container is properly initialized
+        if (carouselSlides) {
+            carouselSlides.style.display = 'flex';
+            carouselSlides.style.transition = 'transform 0.3s ease-out';
+        }
+    });
 });
