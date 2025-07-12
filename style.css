@@ -538,15 +538,88 @@ textarea:focus {
 }
 
 /* Hero Section */
-.hero {
+#hero {
     position: relative;
     overflow: hidden;
-    padding: 4rem 1rem;
-    background: linear-gradient(135deg, #f8fafc 0%, #f1f5f9 100%);
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    color: white;
+    background: linear-gradient(135deg, #1e3c72 0%, #2a5298 100%);
 }
 
-.dark .hero {
+/* Background image container */
+#hero > div:first-child {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    z-index: 1;
+}
+
+/* Background image */
+#hero > div:first-child img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: opacity 0.5s ease;
+}
+
+/* Gradient overlay */
+#hero > div:first-child > div {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: linear-gradient(to bottom, 
+        rgba(15, 23, 42, 0.9) 0%, 
+        rgba(26, 32, 44, 0.8) 50%, 
+        rgba(15, 23, 42, 0.9) 100%);
+}
+
+#hero > * {
+    position: relative;
+    z-index: 2;
+}
+
+#hero h1 {
+    font-size: 3.5rem;
+    font-weight: 800;
+    margin-bottom: 1.5rem;
+    line-height: 1.2;
+    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+#hero p {
+    font-size: 1.25rem;
+    max-width: 800px;
+    margin: 0 auto 2rem;
+    opacity: 0.9;
+    text-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+}
+
+/* Dark mode adjustments */
+.dark #hero {
     background: linear-gradient(135deg, #0f172a 0%, #1e293b 100%);
+}
+
+.dark #hero::before {
+    opacity: 0.05;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+    #hero h1 {
+        font-size: 2.5rem;
+    }
+    
+    #hero p {
+        font-size: 1.1rem;
+    }
 }
 
 .hero::before {

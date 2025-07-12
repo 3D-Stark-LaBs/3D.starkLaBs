@@ -96,16 +96,24 @@
 
         <!-- Hero Section -->
         <section id="hero" class="relative h-screen flex items-center justify-center overflow-hidden" dir="auto">
+            <!-- Background Image Container -->
+            <div class="absolute inset-0 z-0 overflow-hidden">
+                <img src="./asits/panar.png" alt="Background" class="w-full h-full object-cover opacity-50 dark:opacity-30">
+            </div>
+            
             <!-- Hero Content -->
             <div class="container mx-auto px-4 sm:px-6 lg:px-8 relative z-10 text-center animate-fade-in">
-                <div class="max-w-4xl mx-auto">
-                    <!-- Logo -->
-                    <div class="mb-8 animate-bounce-slow">
-                        <img src="./asits/logo.png" alt="Stark Labs Logo" class="mx-auto h-32 w-auto sm:h-40 md:h-48">
+                <div class="max-w-4xl mx-auto relative">
+                    <!-- Logo with Glow Effect -->
+                    <div class="mb-8 animate-bounce-slow relative z-10">
+                        <div class="relative inline-block">
+                            <div class="absolute -inset-4 bg-gradient-to-r from-brand-yellow/30 to-brand-orange/30 rounded-full blur opacity-75 group-hover:opacity-100 transition duration-300"></div>
+                            <img src="./asits/logo.png" alt="Stark Labs Logo" class="relative mx-auto border-4 border-dark-900 rounded-full h-32 w-auto sm:h-40 md:h-48 z-10">
+                        </div>
                     </div>
                     
                     <!-- Company Name -->
-                    <h1 class="text-4xl sm:text-5xl md:text-6xl font-bold text-white mb-6">
+                    <h1 class="text-4xl sm:text-5xl md:text-6xl font-bold text-white mb-6 relative z-10">
                         <span class="bg-clip-text text-transparent bg-gradient-to-r from-brand-yellow to-brand-orange">
                             Stark Labs
                         </span>
