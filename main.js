@@ -82,8 +82,8 @@ function initCarousel(images) {
     const carousel = document.getElementById('image-carousel');
     const slidesContainer = document.getElementById('carousel-slides');
     const loadingIndicator = document.getElementById('carousel-loading');
-    const prevButton = document.getElementById('carousel-prev');
-    const nextButton = document.getElementById('carousel-next');
+    const prevButton = document.getElementById('modal-prev-image');
+    const nextButton = document.getElementById('modal-next-image');
     const indicators = document.getElementById('carousel-indicators');
     
     // Clear existing slides and indicators
@@ -143,13 +143,44 @@ function initCarousel(images) {
     
     // Keyboard navigation
     carousel.setAttribute('tabindex', '0');
-    carousel.addEventListener('keydown', (e) => {
-        if (e.key === 'ArrowLeft') {
-            goToSlide(carouselState.currentIndex - 1);
-        } else if (e.key === 'ArrowRight') {
-            goToSlide(carouselState.currentIndex + 1);
+    carousel.setAttribute('role', 'region');
+    carousel.setAttribute('aria-roledescription', 'carousel');
+    carousel.setAttribute('aria-label', 'Project image carousel');
+    
+    const handleKeyDown = (e) => {
+        switch(e.key) {
+            case 'ArrowLeft':
+                e.preventDefault();
+                goToSlide(carouselState.currentIndex - 1);
+                break;
+            case 'ArrowRight':
+                e.preventDefault();
+                goToSlide(carouselState.currentIndex + 1);
+                break;
+            case 'Home':
+                e.preventDefault();
+                goToSlide(0);
+                break;
+            case 'End':
+                e.preventDefault();
+                goToSlide(carouselState.slides.length - 1);
+                break;
         }
-    });
+    };
+    
+    // Add event listener for keyboard navigation
+    carousel.addEventListener('keydown', handleKeyDown);
+    
+    // Also add keyboard navigation to the document when modal is open
+    const modal = document.getElementById('project-modal');
+    if (modal) {
+        modal.addEventListener('keydown', (e) => {
+            // Only handle if the event target is not an input or textarea
+            if (e.target.tagName !== 'INPUT' && e.target.tagName !== 'TEXTAREA') {
+                handleKeyDown(e);
+            }
+        });
+    }
     
     // Initial slide
     goToSlide(0);
@@ -166,7 +197,10 @@ function initCarousel(images) {
 // Go to specific slide
 function goToSlide(index) {
     const slides = carouselState.slides;
+    if (!slides || slides.length === 0) return;
+    
     const indicators = document.querySelectorAll('#carousel-indicators button');
+    const thumbnails = document.querySelectorAll('.thumbnail-btn');
     
     // Clamp index to valid range
     index = Math.max(0, Math.min(index, slides.length - 1));
@@ -174,11 +208,11 @@ function goToSlide(index) {
     // Update current index
     carouselState.currentIndex = index;
     
-    // Update slide position
+    // Update slide position with smooth transition
     const slideWidth = slides[0]?.offsetWidth || 0;
     carouselState.currentTranslate = -index * slideWidth;
     
-    // Apply transform
+    // Apply transform with smooth transition
     updateSliderPosition();
     
     // Update active indicator
@@ -193,11 +227,19 @@ function goToSlide(index) {
     });
     
     // Update thumbnail selection if exists
-    const thumbnails = document.querySelectorAll('.thumbnail-btn');
     if (thumbnails.length > 0) {
         thumbnails.forEach((thumb, i) => {
+            const img = thumb.querySelector('img');
             if (i === index) {
                 thumb.classList.add('ring-2', 'ring-brand-indigo', 'ring-offset-2');
+                thumb.setAttribute('aria-selected', 'true');
+                if (img) img.classList.remove('opacity-50');
+                // Scroll thumbnail into view if needed
+                thumb.scrollIntoView({
+                    behavior: 'smooth',
+                    block: 'nearest',
+                    inline: 'center'
+                });
                 thumb.setAttribute('aria-current', 'true');
             } else {
                 thumb.classList.remove('ring-2', 'ring-brand-indigo', 'ring-offset-2');
@@ -334,6 +376,24 @@ function createThumbnails(project) {
     });
 }
 
+// Update the main image display when a thumbnail is clicked
+function updateMainImage(project, index) {
+    // Update the carousel to show the selected image
+    goToSlide(index);
+    
+    // Update the active thumbnail
+    const thumbnails = document.querySelectorAll('.thumbnail-btn');
+    thumbnails.forEach((thumb, i) => {
+        if (i === index) {
+            thumb.classList.add('ring-2', 'ring-brand-indigo', 'ring-offset-2');
+            thumb.setAttribute('aria-current', 'true');
+        } else {
+            thumb.classList.remove('ring-2', 'ring-brand-indigo', 'ring-offset-2');
+            thumb.removeAttribute('aria-current');
+        }
+    });
+}
+
 // Update like button state
 function updateLikeButton(projectId, liked) {
     const likeButton = document.querySelector(`#like-btn-${projectId}`);
@@ -448,42 +508,71 @@ function showProjectModal(project) {
         : 'Contact for quote';
     setTextContent('modal-project-price', priceRange);
     
-    // Set up image gallery
-    function updateMainImage(index) {
-        if (projectImages.length === 0) return;
+    // Initialize the carousel with project images
+    if (projectImages.length > 0) {
+        // Initialize the carousel with all images
+        initCarousel(projectImages);
         
-        const imageUrl = projectImages[index];
-        const projectTitle = project?.title || 'Project';
-        
-        // Update carousel slides
-        carouselSlides.innerHTML = '';
-        const slide = document.createElement('div');
-        slide.className = 'slide min-w-full h-full flex-shrink-0';
-        slide.innerHTML = `<img src="${imageUrl}" alt="${projectTitle} - Image ${index + 1}" class="w-full h-full object-cover transition-opacity duration-300">`;
-        carouselSlides.appendChild(slide);
-        
-        // Update active thumbnail
-        const thumbnails = thumbnailGallery.querySelectorAll('button');
-        thumbnails.forEach((thumb, i) => {
-            const isActive = i === index;
-            thumb.setAttribute('aria-selected', isActive ? 'true' : 'false');
-            thumb.classList.toggle('ring-2', isActive);
-            thumb.classList.toggle('ring-offset-2', isActive);
-            thumb.classList.toggle('ring-brand-indigo', isActive);
-            thumb.classList.toggle('dark:ring-brand-yellow', isActive);
+        // Set up the thumbnail gallery
+        thumbnailGallery.innerHTML = '';
+        projectImages.forEach((image, index) => {
+            const button = document.createElement('button');
+            button.type = 'button';
+            button.className = 'thumbnail-btn relative rounded-md overflow-hidden transition-all duration-200 focus:outline-none';
+            button.setAttribute('aria-label', `View image ${index + 1} of ${projectImages.length}`);
+            button.setAttribute('aria-selected', index === 0 ? 'true' : 'false');
             
-            // Update border based on active state
+            const img = document.createElement('img');
+            img.src = image;
+            img.alt = '';
+            img.className = 'w-16 h-16 object-cover' + (index === 0 ? ' opacity-100' : ' opacity-50');
+            img.loading = 'lazy';
+            
+            button.appendChild(img);
+            
+            button.addEventListener('click', (e) => {
+                e.preventDefault();
+                e.stopPropagation();
+                goToSlide(index);
+                // Update thumbnail states
+                updateThumbnailStates(index);
+                // Focus the button for better keyboard navigation
+                button.focus();
+            });
+            
+            // Add keyboard navigation for thumbnails
+            button.addEventListener('keydown', (e) => {
+                if (e.key === 'Enter' || e.key === ' ') {
+                    e.preventDefault();
+                    goToSlide(index);
+                    updateThumbnailStates(index);
+                }
+            });
+            
+            thumbnailGallery.appendChild(button);
+        });
+    } else {
+        // No images available
+        carouselSlides.innerHTML = `
+            <div class="w-full h-full flex items-center justify-center text-gray-500 dark:text-gray-400">
+                No images available
+            </div>
+        `;
+    }
+    
+    // Update thumbnail active states
+    function updateThumbnailStates(activeIndex) {
+        const thumbnails = thumbnailGallery.querySelectorAll('button');
+        thumbnails.forEach((thumb, index) => {
+            const isActive = index === activeIndex;
+            thumb.setAttribute('aria-selected', isActive ? 'true' : 'false');
+            
             const img = thumb.querySelector('img');
             if (img) {
                 img.classList.toggle('opacity-100', isActive);
                 img.classList.toggle('opacity-50', !isActive);
             }
         });
-        
-        // Update carousel position if it exists
-        if (window.carousel) {
-            window.carousel.goToSlide(index);
-        }
     }
     
     // Initialize thumbnails
@@ -760,6 +849,11 @@ function showProjectModal(project) {
             };
         }
         
+        // Initialize the carousel with the first image
+        if (projectImages.length > 0) {
+            updateMainImage(0);
+        }
+        
         // Close modal function
         const closeModal = () => {
             modal.classList.add('opacity-0', 'scale-95');
@@ -792,11 +886,7 @@ function showProjectModal(project) {
             }
         };
         
-        // Remove existing event listeners to prevent duplicates
-        closeButton.removeEventListener('click', handleCloseButtonClick);
-        backdrop.removeEventListener('click', handleBackdropClick);
-        
-        // Add new event listeners
+        // Add event listeners
         closeButton.addEventListener('click', handleCloseButtonClick);
         backdrop.addEventListener('click', handleBackdropClick);
         
@@ -809,7 +899,7 @@ function showProjectModal(project) {
         // Show modal with animation
         document.body.style.overflow = 'hidden'; // Prevent scrolling
         modal.classList.add('flex');
-    modal.classList.remove('hidden');
+        modal.classList.remove('hidden');
         
         // Force reflow to ensure the element is in the DOM before starting animation
         void modal.offsetHeight;
@@ -827,9 +917,19 @@ function showProjectModal(project) {
             const firstFocusable = focusableElements[0];
             const lastFocusable = focusableElements[focusableElements.length - 1];
             
-            // Handle keyboard focus trap
-            modal.addEventListener('keydown', (e) => {
-                if (e.key === 'Tab') {
+            // Handle keyboard navigation
+            const handleKeyDown = (e) => {
+                if (e.key === 'Escape') {
+                    closeModal();
+                } else if (e.key === 'ArrowLeft') {
+                    // Navigate to previous image
+                    const newIndex = (currentImageIndex - 1 + projectImages.length) % projectImages.length;
+                    updateMainImage(newIndex);
+                } else if (e.key === 'ArrowRight') {
+                    // Navigate to next image
+                    const newIndex = (currentImageIndex + 1) % projectImages.length;
+                    updateMainImage(newIndex);
+                } else if (e.key === 'Tab') {
                     if (e.shiftKey && document.activeElement === firstFocusable) {
                         e.preventDefault();
                         lastFocusable.focus();
@@ -838,7 +938,25 @@ function showProjectModal(project) {
                         firstFocusable.focus();
                     }
                 }
-            });
+            };
+            
+            // Add event listeners for keyboard navigation
+            modal.addEventListener('keydown', handleKeyDown);
+            
+            // Add event listeners for previous/next buttons
+            if (prevButton) {
+                prevButton.onclick = () => {
+                    const newIndex = (currentImageIndex - 1 + projectImages.length) % projectImages.length;
+                    updateMainImage(newIndex);
+                };
+            }
+            
+            if (nextButton) {
+                nextButton.onclick = () => {
+                    const newIndex = (currentImageIndex + 1) % projectImages.length;
+                    updateMainImage(newIndex);
+                };
+            }
         });
     }
     
