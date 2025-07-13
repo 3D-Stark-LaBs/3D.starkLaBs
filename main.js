@@ -31,6 +31,7 @@ const appState = {
     galleryData: []
 };
 
+let cart = JSON.parse(localStorage.getItem('cart')) || [];
 // ==============================================
 // DOM Elements
 // ==============================================
@@ -456,14 +457,21 @@ function openModal(project) {
 
 // Make showProjectModal available globally for testing
 window.showProjectModal = showProjectModal;
-
 function openProjectModal(project) {
     if (!project) {
         console.error('No project data provided');
         return;
     }
+
+    // ✅ Store the project ID in the modal for later use (like in addToCart)
+    const modal = document.getElementById('project-modal');
+    if (modal) {
+        modal.setAttribute('data-project-id', project.id || '');
+    }
+
     showProjectModal(project);
 }
+
 
 function showProjectModal(project) {
     if (!project) {
@@ -1443,16 +1451,17 @@ function updateDynamicContent() {
 // ==============================================
 // Cart Management
 // ==============================================
-let cart = [];
+
 
 // Initialize cart functionality
 function initCart() {
-    // Load cart from localStorage if available
+    let cart = JSON.parse(localStorage.getItem('cart')) || [];
     const savedCart = localStorage.getItem('cart');
+    const count = cart.reduce((total, item) => total + item.quantity, 0);
     if (savedCart) {
         try {
-            cart = JSON.parse(savedCart);
-            updateAllCartCounts(cart.length);
+
+            updateAllCartCounts(count);
         } catch (e) {
             console.error('Error parsing cart from localStorage:', e);
             cart = [];
@@ -1494,10 +1503,11 @@ function addToCart(project) {
 // Remove item from cart
 function removeFromCart(projectId) {
     const itemIndex = cart.findIndex(item => item.id === projectId);
+    const count = cart.reduce((total, item) => total + item.quantity, 0);
     if (itemIndex !== -1) {
         cart.splice(itemIndex, 1);
         saveCart();
-        updateAllCartCounts(cart.length);
+        updateAllCartCounts(count);
         return true;
     }
     return false;
@@ -2041,8 +2051,8 @@ function initMobileFeatures() {
     setupMobileNavigation();
     
     // Sync cart count between mobile and desktop
-    const cartCount = document.getElementById('cart-item-count')?.textContent || '0';
-    updateAllCartCounts(parseInt(cartCount));
+    const count = cart.reduce((total, item) => total + item.quantity, 0);
+    updateAllCartCounts(count);
     
     console.log('Mobile features initialized');
 }
@@ -2109,8 +2119,9 @@ document.addEventListener('DOMContentLoaded', () => {
     let resizeTimer;
     window.addEventListener('resize', () => {
         clearTimeout(resizeTimer);
+        const count = cart.reduce((total, item) => total + item.quantity, 0);
         resizeTimer = setTimeout(() => {
-            updateAllCartCounts(parseInt(document.getElementById('cart-item-count')?.textContent || '0'));
+            updateAllCartCounts(count);
         }, 250);
     });
     
