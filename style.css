@@ -196,7 +196,7 @@ body {
     transition: all 0.3s ease;
 }
 
-
+    
 /* Header & Navigation */
 header {
     background-color: white;
@@ -465,6 +465,45 @@ html {
 .btn-secondary:hover {
     transform: translateY(-2px);
     box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+}
+
+/* Mobile Sidebar Navigation */
+.mobile-nav-icons {
+    margin-top: 15px;
+}
+
+.mobile-bottom-icons {
+    margin-bottom: -40px;
+    margin-top: -50px;
+}
+
+/* Cart Sidebar */
+.cart-sidebar-container {
+    display: flex;
+    flex-direction: column;
+    height: 100vh;
+    width: 100%;
+    max-width: 400px;
+    position: fixed;
+    top: 0;
+    right: 0;
+    background-color: white;
+    box-shadow: -2px 0 10px rgba(0, 0, 0, 0.1);
+    transform: translateX(100%);
+    transition: transform 0.3s ease-in-out;
+    z-index: 10001;
+}
+
+.dark .cart-sidebar-container {
+    background-color: var(--bg-secondary);
+}
+
+.cart-sidebar-container.open {
+    transform: translateX(0);
+}
+
+.cart-sidebar-container.hidden {
+    display: none;
 }
 
 /* Service cards */
