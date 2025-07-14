@@ -4,75 +4,110 @@ import { STLLoader } from 'three/addons/loaders/STLLoader.js';
 import { OrbitControls } from 'three/addons/controls/OrbitControls.js';
 
 export function renderSTL(containerId, stlUrl) {
-    const container = document.getElementById(containerId);
-    if (!container) return console.error(`Container '${containerId}' not found`);
+  const container = document.getElementById(containerId);
+  if (!container) return console.error(`Container '${containerId}' not found`);
+  container.innerHTML = '';
 
-    // Clear container
-    container.innerHTML = '';
+  // المشهد والكاميرا والرندر
+  const scene = new THREE.Scene();
+  scene.background = new THREE.Color(0xf9f9f9);
 
-    // Scene setup
-    const scene = new THREE.Scene();
-    const camera = new THREE.PerspectiveCamera(45, container.clientWidth / container.clientHeight, 0.1, 1000);
-    camera.position.set(100, 100, 100);
+  const camera = new THREE.PerspectiveCamera(45, container.clientWidth / container.clientHeight, 0.1, 1000);
+  camera.position.set(100, 100, 100);
 
-    const renderer = new THREE.WebGLRenderer({ antialias: true, alpha: true });
-    renderer.setSize(container.clientWidth, container.clientHeight);
-    container.appendChild(renderer.domElement);
+  const renderer = new THREE.WebGLRenderer({ antialias: true });
+  renderer.setSize(container.clientWidth, container.clientHeight);
+  renderer.shadowMap.enabled = true;
+  renderer.shadowMap.type = THREE.PCFSoftShadowMap;
+  container.appendChild(renderer.domElement);
 
-    // Controls
-    const controls = new OrbitControls(camera, renderer.domElement);
-    controls.enableDamping = true;
+  // 💡 الإضاءة
+  scene.add(new THREE.HemisphereLight(0xffffff, 0x444444, 0.6));
+  const directionalLight = new THREE.DirectionalLight(0xffffff, 1);
+  directionalLight.position.set(100, 200, 100);
+  directionalLight.castShadow = true;
+  scene.add(directionalLight);
 
-    // Lights
-    scene.add(new THREE.AmbientLight(0xffffff, 0.6));
-    const dirLight = new THREE.DirectionalLight(0xffffff, 0.6);
-    dirLight.position.set(1, 1, 1).normalize();
-    scene.add(dirLight);
+  // 🎮 التحكمات
+  const controls = new OrbitControls(camera, renderer.domElement);
+  controls.enableDamping = true;
+  controls.autoRotate = true;
+  controls.autoRotateSpeed = 1.5;
+  controls.enableZoom = true;
+  controls.enablePan = true;
 
-    // Load model
-    const loader = new STLLoader();
-    loader.load(
-        stlUrl,
-        geometry => {
-            const material = new THREE.MeshStandardMaterial({ color: 0x3b82f6 });
-            const mesh = new THREE.Mesh(geometry, material);
+  // 🎨 الخامة
+  const material = new THREE.MeshStandardMaterial({
+    color: 0xcccccc,
+    metalness: 0.3,
+    roughness: 0.4,
+    flatShading: true
+  });
 
-            // Centering
-            geometry.computeBoundingBox();
-            const box = geometry.boundingBox;
-            const center = new THREE.Vector3();
-            box.getCenter(center);
-            mesh.position.sub(center);
+  // 🧱 تحميل STL وتوسيطه
+  const loader = new STLLoader();
+  loader.load(
+    stlUrl,
+    geometry => {
+      const mesh = new THREE.Mesh(geometry, material);
+      mesh.castShadow = true;
+      mesh.receiveShadow = true;
 
-            // Scale to fit
-            const size = new THREE.Vector3();
-            box.getSize(size);
-            const maxDim = Math.max(size.x, size.y, size.z);
-            const scale = 150 / maxDim;
-            mesh.scale.set(scale, scale, scale);
+      geometry.computeBoundingBox();
+      const box = geometry.boundingBox;
+      const center = box.getCenter(new THREE.Vector3());
+      const size = box.getSize(new THREE.Vector3());
+      const scale = 150 / Math.max(size.x, size.y, size.z);
 
-            scene.add(mesh);
-        },
-        undefined,
-        error => {
-            console.error("Error loading STL:", error);
-            container.innerHTML = '<p class="text-red-500">Error loading 3D model</p>';
-        }
-    );
+      mesh.position.sub(center);
+      mesh.scale.set(scale, scale, scale);
 
-    // Resize
-    window.addEventListener('resize', () => {
-        camera.aspect = container.clientWidth / container.clientHeight;
-        camera.updateProjectionMatrix();
-        renderer.setSize(container.clientWidth, container.clientHeight);
-    });
-
-    // Animate
-    function animate() {
-        requestAnimationFrame(animate);
-        controls.update();
-        renderer.render(scene, camera);
+      scene.add(mesh);
+    },
+    undefined,
+    error => {
+      console.error("❌ STL Error:", error);
+      container.innerHTML = `<img src="fallback.jpg" alt="Preview not available" class="w-full h-full object-contain" />`;
     }
-    animate();
+  );
+
+  // 📦 عرض ديناميكي مع تغيير حجم الشاشة
+  window.addEventListener('resize', () => {
+    camera.aspect = container.clientWidth / container.clientHeight;
+    camera.updateProjectionMatrix();
+    renderer.setSize(container.clientWidth, container.clientHeight);
+  });
+
+  // 🌀 التحديث المستمر
+  function animate() {
+    requestAnimationFrame(animate);
+    controls.update();
+    renderer.render(scene, camera);
+  }
+  // بعد animate();
+animate();
+
+// ✅ التحكم في الأزرار
+const resetBtn = document.getElementById('reset-view');
+const toggleBtn = document.getElementById('toggle-rotate');
+
+if (resetBtn) {
+  resetBtn.addEventListener('click', () => {
+    controls.reset();
+  });
 }
+
+if (toggleBtn) {
+  toggleBtn.addEventListener('click', () => {
+    controls.autoRotate = !controls.autoRotate;
+    toggleBtn.textContent = controls.autoRotate ? '⏸️ Pause Auto-Rotate' : '▶️ Start Auto-Rotate';
+  });
+}
+
+  animate();
+
+}
+
+
+// 🪄 Export للنداء الخارجي
 window.renderSTLViewer = renderSTL;
