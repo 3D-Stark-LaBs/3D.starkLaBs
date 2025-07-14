@@ -145,7 +145,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 <img 
                     src="${image}" 
                     alt="Thumbnail ${index + 1}" 
-                    class="w-full h-full object-cover transition-transform duration-200 hover:scale-110"
+                    class="w-full h-full object-cover  transition-transform duration-200 hover:scale-110"
                 >
             `;
             button.setAttribute('aria-label', `View image ${index + 1}`);
