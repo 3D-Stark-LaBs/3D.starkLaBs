@@ -3,33 +3,39 @@
 // ==============================================
 // App State
 // ==============================================
-const appState = {
-    // Theme state (default to system preference or 'light')
-    theme: localStorage.getItem('theme') || 
-           (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light'),
-    
-    // Static text content (English only)
-    text: {
-        // Navigation
-        navGallery: 'Gallery',
-        navAbout: 'About',
-        navContact: 'Contact',
-        // Hero
-        heroTitle: '3D Printing & Design',
-        heroSubtitle: 'Transforming ideas into physical reality',
-        // Gallery
-        galleryTitle: 'Our Work',
-        viewDetails: 'View Details',
-        noItems: 'No gallery items found. Please check back later.',
-        // Footer
-        copyright: ' 2025 3D Stark Labs. All rights reserved.',
-        // Theme
-        toggleTheme: 'Toggle Dark Mode',
-    },
-    
-    // Gallery data will be loaded here
-    galleryData: []
-};
+// Check if appState already exists to prevent redeclaration
+if (typeof window.appState === 'undefined') {
+    window.appState = {
+        // Theme state (default to system preference or 'light')
+        theme: localStorage.getItem('theme') || 
+               (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light'),
+        
+        // Static text content (English only)
+        text: {
+            // Navigation
+            navGallery: 'Gallery',
+            navAbout: 'About',
+            navContact: 'Contact',
+            // Hero
+            heroTitle: '3D Printing & Design',
+            heroSubtitle: 'Transforming ideas into physical reality',
+            // Gallery
+            galleryTitle: 'Our Work',
+            viewDetails: 'View Details',
+            noItems: 'No gallery items found. Please check back later.',
+            // Footer
+            copyright: ' 2025 3D Stark Labs. All rights reserved.',
+            // Theme
+            toggleTheme: 'Toggle Dark Mode',
+        },
+        
+        // Gallery data will be loaded here
+        galleryData: []
+    };
+}
+
+// Create a local reference to appState for easier access
+const appState = window.appState;
 
 let cart = JSON.parse(localStorage.getItem('cart')) || [];
 // ==============================================

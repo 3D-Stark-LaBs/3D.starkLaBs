@@ -7,6 +7,12 @@ document.addEventListener('DOMContentLoaded', function() {
     const scrollLeftBtn = document.getElementById('scroll-left');
     const scrollRight = document.getElementById('scroll-right');
 
+    // If any required elements are missing, exit early
+    if (!fileUpload || !imageStrip || !imagePreviewContainer || !mainImagePreview || !mainPreview) {
+        console.warn('Required elements for image upload not found');
+        return;
+    }
+
     let uploadedImages = [];
     let currentImageIndex = 0;
 
@@ -69,19 +75,31 @@ document.addEventListener('DOMContentLoaded', function() {
         }
     }
 
-    scrollLeftBtn.addEventListener('click', () => {
-        imageStrip.scrollBy({ left: -150, behavior: 'smooth' });
-    });
+    if (scrollLeftBtn) {
+        scrollLeftBtn.addEventListener('click', () => {
+            imageStrip.scrollBy({ left: -150, behavior: 'smooth' });
+        });
+    }
 
-    scrollRight.addEventListener('click', () => {
-        imageStrip.scrollBy({ left: 150, behavior: 'smooth' });
-    });
+    if (scrollRight) {
+        scrollRight.addEventListener('click', () => {
+            imageStrip.scrollBy({ left: 150, behavior: 'smooth' });
+        });
+    }
 
     const dropArea = fileUpload.closest('div[class*="border-dashed"]');
-    ['dragenter', 'dragover', 'dragleave', 'drop'].forEach(eventName => dropArea.addEventListener(eventName, preventDefaults));
-    ['dragenter', 'dragover'].forEach(eventName => dropArea.addEventListener(eventName, highlight));
-    ['dragleave', 'drop'].forEach(eventName => dropArea.addEventListener(eventName, unhighlight));
-    dropArea.addEventListener('drop', handleDrop);
+    if (dropArea) {
+        ['dragenter', 'dragover', 'dragleave', 'drop'].forEach(eventName => {
+            dropArea.addEventListener(eventName, preventDefaults);
+        });
+        ['dragenter', 'dragover'].forEach(eventName => {
+            dropArea.addEventListener(eventName, highlight);
+        });
+        ['dragleave', 'drop'].forEach(eventName => {
+            dropArea.addEventListener(eventName, unhighlight);
+        });
+        dropArea.addEventListener('drop', handleDrop);
+    }
 
     function preventDefaults(e) {
         e.preventDefault();
