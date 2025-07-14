@@ -481,45 +481,60 @@
                         </label>
                       </div>
         
-                      <!-- Submit Buttons -->
-                      <div class="grid grid-cols-1 gap-4 mt-8 sm:grid-cols-2">
-                        <button type="button" id="whatsapp-submit"
-                                class="relative flex justify-center items-center px-6 py-3.5 text-sm  rounded-lg shadow-sm text-black font-bold bg-gradient-to-r from-green-400 to-green-700 hover:from-green-300 hover:to-green-500 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-amber-500 transition-all duration-200 transform hover:-translate-y-0.5">
-                          Send via WhatsApp
-                          <span class="absolute -top-2 -right-2 bg-gradient-to-r from-amber-400 to-orange-500 text-black text-xs font-bold px-2 py-0.5 rounded-full shadow-md transform group-hover:scale-110 transition-transform">
-                            Recommended
-                          </span>
-                        </button>
-                        <button type="submit"
-                                class="flex justify-center items-center px-6 py-3.5 text-sm font-medium rounded-lg shadow-sm text-white bg-gradient-to-r from-brand-indigo to-brand-purple hover:from-indigo-600 hover:to-purple-600 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 transition-all duration-200 transform hover:-translate-y-0.5">
-                          Send via Email
-                        </button>
-                      </div>
-                    </form>
+
+
 
 
                   </div>
         
                   <!-- Right Side - Support Info -->
                   <div class="bg-gradient-to-br from-brand-indigo to-brand-purple p-8 lg:p-10 text-white">
-                    <div class="h-a flex flex-col justify-between">
-                      <!-- Order Summary -->
-                      <div class="mb-8 overflow-y-auto h-auto">
-                        <h3 class="text-xl font-bold  bg-dark-900 rounded-t-lg h-12 flex items-center">
-                          <svg class="w-5 h-5 mr-2 text-white/80" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+
+                    <div class="bg-gradient-to-br from-brand-indigo to-brand-purple p-8 lg:p-10 text-white rounded-2xl shadow-xl">
+                        <div class="flex flex-col justify-between h-full">
+                          
+
+                          <div class="">
+                            <h3 class="text-xl font-bold flex items-center gap-2 bg-dark-900 px-4 py-3 rounded-t-lg">
+                              <svg class="w-5 h-5 text-white/80" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
                                   d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2"/>
-                          </svg>
-                          Your Order Summary
-                        </h3>
-                        <div class="space-y-4 rounded-b-lg pl-8 bg-orange-400">
-                          <div class="flex justify-between items-center py-2 border-b border-white/10">
-                            <span id="product-name-right" class="text-sm text-slate-950 font-bold ">-</span>
+                              </svg>
+                              Your Order Summary
+                            </h3>
                           </div>
+                      
+                          <!-- Order Items -->
+                          <div class="bg-gradient-to-r from-yellow-500 to-orange-500 backdrop-blur-sm p-5 rounded-b-lg space-y-4 overflow-y-auto max-h-[400px]">
+                            <div id="product-name-right" class="space-y-4 text-black text-sm font-medium">
+                              <!-- سيتم إدخال الطلبات هنا عبر JS -->
+                              <p class="italic opacity-70">No items in cart.</p>
+                            </div>
                           </div>
+                          <hr class="my-6 border-white/20">
                         </div>
                       </div>
-        
+                      <hr>
+                          <div id="device-hint" class="mt-2 mb-2 text-sm text-gray-300 dark:text-gray-300 bg-gradient-to-r from-gray-800 to-gray-700  dark:bg-yellow-200 p-4 rounded-lg border border-yellow-300 dark:border-dark-600">
+                        <!-- سيتم استبداله تلقائيًا -->
+                        Loading tips...
+                      </div>
+                      <hr>
+ <!-- Submit Buttons -->
+ <div class="grid grid-cols-1 gap-4 mt-2 mb-2 sm:grid-cols-2">
+    <button type="button" id="whatsapp-submit"
+            class="relative flex justify-center items-center px-6 py-3.5 text-sm  rounded-lg shadow-sm text-black font-bold bg-gradient-to-r from-green-400 to-green-700 hover:from-green-300 hover:to-green-500 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-amber-500 transition-all duration-200 transform hover:-translate-y-0.5">
+      Send via WhatsApp
+
+    </button>
+    <button type="submit"
+            class="flex justify-center items-center px-6 py-3.5 text-sm font-medium rounded-lg shadow-sm text-white bg-gradient-to-r from-yellow-500 to-orange-500 hover:from-orange-500 hover:to-orange-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 transition-all duration-200 transform hover:-translate-y-0.5">
+      Send via Email
+    </button>
+  </div>
+</form>
+                    </form>
+                      
                       <!-- Help Section -->
                       <div>
                         <hr>

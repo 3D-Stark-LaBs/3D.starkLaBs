@@ -100,6 +100,30 @@ function loadCartSummary() {
     );
   }
   
+  function isMobileDevice() {
+    return /android|iphone|ipad|ipod|opera mini|iemobile|mobile/i.test(navigator.userAgent.toLowerCase());
+  }
+  
+  function updateDeviceHint() {
+    const hintBox = document.getElementById('device-hint');
+  
+    if (!hintBox) return;
+  
+    if (isMobileDevice()) {
+      hintBox.innerHTML = `
+        📱 <strong>You are using a mobile device.</strong><br>
+        After pressing <em>"Send via WhatsApp"</em>, your message will open in WhatsApp ready to send. Just hit the send button!
+      `;
+    } else {
+      hintBox.innerHTML = `
+        💻 <strong>You are using a desktop/laptop.</strong><br>
+        Sending via WhatsApp may require manual steps. We recommend using <em>"Send via Email"</em> for a smoother experience.<br><br>
+        <strong>Tip:</strong> Clicking "Send via WhatsApp" will copy the message and open WhatsApp Web. Paste the message there and hit send.
+      `;
+    }
+  }
+  
+  window.addEventListener('DOMContentLoaded', updateDeviceHint);
   
   function sendWhatsAppMessage() {
     const message = buildMessage();
