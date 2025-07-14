@@ -60,45 +60,46 @@ function setupAddToCartButton() {
         addToCartButton.addEventListener('click', addToCart);
     }
 }
+
 function addToCart() {
     const modal = document.getElementById('project-modal');
     const projectId = modal.getAttribute('data-project-id')?.trim();
     const projectTitle = document.getElementById('modal-project-title')?.textContent?.trim() || 'Untitled Project';
     const projectPrice = parseFloat(document.getElementById('modal-project-price')?.textContent?.replace(/[^0-9.]/g, '')) || 0;
     const projectImage = document.querySelector('#carousel-slides img')?.src || document.querySelector('#modal-main-image')?.src || './images/placeholder.jpg';
-    const designLink = modal.getAttribute('data-design-link') || '';
-
+    const designLink = modal.getAttribute('data-design-link') || ''; // ✅ تأكد من وجوده
+    const material = modal.getAttribute('data-material') || 'Not specified'; // ✅ خامة الطباعة
+  
     const fallbackId = `${projectTitle}-${projectPrice}`;
     const itemId = projectId || fallbackId;
-
+  
     const cartItem = {
-        id: itemId,
-        title: projectTitle,
-        price: projectPrice,
-        quantity: 1,
-        image: projectImage,
-        designLink: designLink,
-        timestamp: Date.now()
+      id: itemId,
+      title: projectTitle,
+      price: projectPrice,
+      quantity: 1,
+      image: projectImage,
+      designLink: designLink,
+      material: material, // ✅ إضافة الخامة
+      timestamp: Date.now()
     };
-
-    // 🔁 Prevent duplicate based on title & price
+  
     const existingItemIndex = cart.findIndex(item =>
-        item.id === itemId ||
-        (item.title === projectTitle && item.price === projectPrice)
+      item.id === itemId || (item.title === projectTitle && item.price === projectPrice)
     );
-
+  
     if (existingItemIndex > -1) {
-        cart[existingItemIndex].quantity += 1;
+      cart[existingItemIndex].quantity += 1;
     } else {
-        cart.push(cartItem);
+      cart.push(cartItem);
     }
-
+  
     saveCart();
     updateCartUI();
     showNotification('Item added to cart!');
-}
+  }
 
-
+  
 function saveCart() {
     try {
         localStorage.setItem('cart', JSON.stringify(cart));

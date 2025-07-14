@@ -167,11 +167,11 @@ function initCarousel(images) {
         switch(e.key) {
             case 'ArrowLeft':
                 e.preventDefault();
-                goToSlide(carouselState.currentIndex - 1);
+                goToSlide(carouselState.currentIndex + 1);
                 break;
             case 'ArrowRight':
                 e.preventDefault();
-                goToSlide(carouselState.currentIndex + 1);
+                goToSlide(carouselState.currentIndex - 1);
                 break;
             case 'Home':
                 e.preventDefault();
@@ -1624,56 +1624,6 @@ function toggleCartSidebar(open) {
     }
 }
 
-// Setup cart event listeners
-// function setupCartEventListeners() {
-//     // Handle add to cart buttons
-//     document.addEventListener('click', (e) => {
-//         const addToCartBtn = e.target.closest('.add-to-cart');
-//         if (addToCartBtn && currentProject) {
-//             e.preventDefault();
-//             addToCart(currentProject);
-//             renderCartItems();
-//         }
-        
-//         // Handle remove from cart buttons
-//         const removeFromCartBtn = e.target.closest('.remove-from-cart');
-//         if (removeFromCartBtn) {
-//             const projectId = removeFromCartBtn.dataset.projectId;
-//             if (projectId && removeFromCart(projectId)) {
-//                 // Update cart UI if cart is open
-//                 renderCartItems();
-//             }
-//         }
-        
-//         // Handle cart toggle button in header
-//         const cartToggleBtn = e.target.closest('#cart-toggle-button');
-//         if (cartToggleBtn) {
-//             e.preventDefault();
-//             e.stopPropagation();
-//             toggleCartSidebar();
-//         }
-//     }
-
-// );
-    
-//     // Close cart when clicking overlay
-//     const cartOverlay = document.getElementById('cart-overlay');
-//     if (cartOverlay) {
-//         cartOverlay.addEventListener('click', (e) => {
-//             e.stopPropagation();
-//             toggleCartSidebar(false);
-//         });
-//     }
-    
-//     // Close cart when pressing Escape key
-//     document.addEventListener('keydown', (e) => {
-//         const cartSidebar = document.getElementById('cart-sidebar');
-//         if (e.key === 'Escape' && cartSidebar && !cartSidebar.classList.contains('translate-x-full')) {
-//             toggleCartSidebar(false);
-//         }
-//     });
-// }
-
 // Render cart items in the sidebar
 function renderCartItems() {
     const cartItemsContainer = document.getElementById('cart-items');
@@ -2027,6 +1977,7 @@ class SPANavigator {
                 this.loadingOverlay.style.visibility = 'hidden';
             }
         }, this.transitionDuration);
+        loadCartSummary()
     }
     
     updateActiveNavLink(sectionId) {

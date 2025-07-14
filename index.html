@@ -94,7 +94,7 @@
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
                     </svg>
                 </a>
-                <a href="#order" class="nav-icon group" data-section="order" title="Order Now">
+                <a href="#order"  class="nav-icon group" data-section="order" title="Order Now">
                     <svg class="w-6 h-6 group-[.active]:text-brand-indigo dark:group-[.active]:text-brand-yellow" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 11V7a4 4 0 00-8 0v4M5 9h14l1 12H4L5 9z" />
                     </svg>
@@ -502,28 +502,20 @@
         
                   <!-- Right Side - Support Info -->
                   <div class="bg-gradient-to-br from-brand-indigo to-brand-purple p-8 lg:p-10 text-white">
-                    <div class="h-full flex flex-col justify-between">
+                    <div class="h-auto flex flex-col justify-between">
                       <!-- Order Summary -->
-                      <div class="mb-8 overflow-y-auto max-h-[200px]">
-                        <h3 class="text-xl font-bold mb-4 flex items-center">
+                      <div class="mb-8 overflow-y-auto h-auto">
+                        <h3 class="text-xl font-bold  bg-dark-900 rounded-t-lg h-12 flex items-center">
                           <svg class="w-5 h-5 mr-2 text-white/80" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
                                   d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2"/>
                           </svg>
                           Your Order Summary
                         </h3>
-                        <div class="space-y-4">
+                        <div class="space-y-4 rounded-b-lg pl-8 bg-orange-400">
                           <div class="flex justify-between items-center py-2 border-b border-white/10">
-                            <span class="text-sm text-white/80">Product Name:</span>
-                            <span id="product-name-right" class="text-sm font-medium">-</span>
+                            <span id="product-name-right" class="text-sm text-slate-950 font-bold ">-</span>
                           </div>
-                          <div class="flex justify-between items-center py-2 border-b border-white/10">
-                            <span class="text-sm text-white/80">Quantity:</span>
-                            <span id="quantity-right">-</span>
-                          </div>
-                          <div class="flex justify-between items-center py-2 border-b border-white/10">
-                            <span class="text-sm text-white/80">Price:</span>
-                            <span id="price-right">-</span>
                           </div>
                         </div>
                       </div>
@@ -577,7 +569,7 @@
                         </ul>
                       </div>
                     </div>
-                  </div>
+                  </div> 
                 </div>
               </div>
             </div>
@@ -597,7 +589,7 @@
     </a>
 
     <!-- Project Modal -->
-    <div id="project-modal" data-project-id="" class="fixed inset-0 z-[9998] p-4 hidden opacity-0 transition-opacity duration-300" role="dialog" aria-modal="true" aria-labelledby="modal-title">
+    <div id="project-modal" data-design-link="https://..." data-project-id=""  class="fixed inset-0 z-[9998] p-4 hidden opacity-0 transition-opacity duration-300" role="dialog" aria-modal="true" aria-labelledby="modal-title">
         <!-- Modal Backdrop -->
         <div id="modal-backdrop" class="fixed inset-0 bg-black/60 backdrop-blur-sm"></div>
 
