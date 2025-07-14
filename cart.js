@@ -1,5 +1,5 @@
 // Initialize cart from localStorage or create empty cart
-let cart = JSON.parse(localStorage.getItem('cart')) || [];
+// let cart = JSON.parse(localStorage.getItem('cart')) || [];
 
 // DOM elements
 const cartSidebar = document.getElementById('cart-sidebar');
@@ -20,19 +20,27 @@ document.addEventListener('DOMContentLoaded', () => {
 });
 function openCart() {
     if (!cartSidebar || !cartBackdrop) return;
+
     document.body.style.overflow = 'hidden';
+
     cartSidebar.classList.remove('hidden');
     cartBackdrop.classList.remove('hidden');
-    cartSidebar.classList.add('flex', 'transition-all', 'duration-300');
-    cartSidebar.classList.add('translate-x-full');
+
+    // ✅ تأكد إن transform يعمل
+    cartSidebar.classList.add('flex', 'transition-all', 'duration-300', 'translate-x-full');
     cartBackdrop.classList.add('opacity-0');
-    if (cartItemsContainer) cartItemsContainer.style.overflowY = 'auto';
+
+    // ✅ Force reflow to apply initial state
+    cartSidebar.offsetHeight; // 🧠 لازم تعمل كده قبل إزالة translate-x-full
+
     setTimeout(() => {
         cartSidebar.classList.remove('translate-x-full');
+        cartSidebar.classList.add('translate-x-0'); // ✅ أضف دي
         cartBackdrop.classList.remove('opacity-0');
         cartBackdrop.classList.add('opacity-100');
-    }, 20);
+    }, 10); // مش لازم 20، 10 تكفي
 }
+
 
 function setupCartEventListeners() {
     if (cartToggleButton) cartToggleButton.addEventListener('click', openCart);

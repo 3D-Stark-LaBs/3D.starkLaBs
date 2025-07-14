@@ -154,7 +154,7 @@ body {
     
     /* Cart sidebar animation */
     #cart-sidebar {
-        transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        transition: transform 0.3s ease-in-out;
     }
     
     #cart-sidebar.translate-x-full {
@@ -164,6 +164,7 @@ body {
     #cart-sidebar.translate-x-0 {
         transform: translateX(0);
     }
+    
     
     /* Ensure cart count is visible */
     #mobile-cart-item-count {

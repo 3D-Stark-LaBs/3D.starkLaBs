@@ -478,6 +478,9 @@ function showProjectModal(project) {
         console.error('No project data provided to showProjectModal');
         return;
     }
+    
+    // Store the project ID for later use in the animation frame
+    const projectId = project.id;
 
     const modal = document.getElementById('project-modal');
     const backdrop = document.getElementById('modal-backdrop');
@@ -493,9 +496,40 @@ function showProjectModal(project) {
         console.error('Required modal elements not found');
         return;
     }
+
+    
     
     // Store current project for keyboard events
     window.currentModalProject = project;
+    
+    // Initialize 3D viewer after a short delay to ensure DOM is ready
+    if (project.id) {
+        // Use requestAnimationFrame to ensure the modal is fully rendered
+        requestAnimationFrame(() => {
+            const stlUrl = `gallery/${project.id}/model.stl`;
+            console.log('STL URL:', stlUrl);
+            
+            // Clear any existing viewer
+            const viewerContainer = document.getElementById('viewer-container');
+            if (viewerContainer) {
+                viewerContainer.innerHTML = ''; // Clear previous content
+                
+                // Initialize the viewer
+                try {
+                    renderSTLViewer('viewer-container', stlUrl);
+                } catch (error) {
+                    console.error('Error initializing STL viewer:', error);
+                    viewerContainer.innerHTML = `
+                        <div class="p-4 text-red-500">
+                            Error loading 3D model. Please check the console for details.
+                        </div>
+                    `;
+                }
+            } else {
+                console.error('Viewer container not found');
+            }
+        });
+    }
     
     // Get all images for the gallery (use thumbnail as first image if available)
     const projectImages = [project.thumbnail, ...(project.images || [])].filter(Boolean);
@@ -977,7 +1011,44 @@ function showProjectModal(project) {
     
     // Initialize the modal
     initModal();
+    
+    
+    // Initialize STL viewer after the modal is fully shown and mounted
+    const initSTLViewer = () => {
+        const viewerContainer = document.getElementById('viewer-container');
+        if (!viewerContainer) {
+            console.error('Viewer container not found');
+            return;
+        }
+        
+        // Clear any existing content
+        viewerContainer.innerHTML = '';
+        
+        // Set the STL file path
+        const stlUrl = `gallery/${projectId}/model.stl`;
+        console.log('Initializing STL viewer with URL:', stlUrl);
+        
+        try {
+            // Initialize the viewer
+            renderSTLViewer('viewer-container', stlUrl);
+        } catch (error) {
+            console.error('Error initializing STL viewer:', error);
+            viewerContainer.innerHTML = `
+                <div class="p-4 text-red-500">
+                    Error loading 3D model. Please check the console for details.
+                </div>
+            `;
+        }
+    };
+    
+    // Use requestAnimationFrame to ensure the modal is fully rendered
+    // and visible in the DOM before initializing the viewer
+    requestAnimationFrame(() => {
+        // Small delay to ensure all CSS transitions are complete
+        setTimeout(initSTLViewer, 50);
+    });
 }
+
 
 // Close modal function
 function closeModal() {
@@ -1548,52 +1619,54 @@ function toggleCartSidebar(open) {
 }
 
 // Setup cart event listeners
-function setupCartEventListeners() {
-    // Handle add to cart buttons
-    document.addEventListener('click', (e) => {
-        const addToCartBtn = e.target.closest('.add-to-cart');
-        if (addToCartBtn && currentProject) {
-            e.preventDefault();
-            addToCart(currentProject);
-            renderCartItems();
-        }
+// function setupCartEventListeners() {
+//     // Handle add to cart buttons
+//     document.addEventListener('click', (e) => {
+//         const addToCartBtn = e.target.closest('.add-to-cart');
+//         if (addToCartBtn && currentProject) {
+//             e.preventDefault();
+//             addToCart(currentProject);
+//             renderCartItems();
+//         }
         
-        // Handle remove from cart buttons
-        const removeFromCartBtn = e.target.closest('.remove-from-cart');
-        if (removeFromCartBtn) {
-            const projectId = removeFromCartBtn.dataset.projectId;
-            if (projectId && removeFromCart(projectId)) {
-                // Update cart UI if cart is open
-                renderCartItems();
-            }
-        }
+//         // Handle remove from cart buttons
+//         const removeFromCartBtn = e.target.closest('.remove-from-cart');
+//         if (removeFromCartBtn) {
+//             const projectId = removeFromCartBtn.dataset.projectId;
+//             if (projectId && removeFromCart(projectId)) {
+//                 // Update cart UI if cart is open
+//                 renderCartItems();
+//             }
+//         }
         
-        // Handle cart toggle button in header
-        const cartToggleBtn = e.target.closest('#cart-toggle-button');
-        if (cartToggleBtn) {
-            e.preventDefault();
-            e.stopPropagation();
-            toggleCartSidebar();
-        }
-    });
+//         // Handle cart toggle button in header
+//         const cartToggleBtn = e.target.closest('#cart-toggle-button');
+//         if (cartToggleBtn) {
+//             e.preventDefault();
+//             e.stopPropagation();
+//             toggleCartSidebar();
+//         }
+//     }
+
+// );
     
-    // Close cart when clicking overlay
-    const cartOverlay = document.getElementById('cart-overlay');
-    if (cartOverlay) {
-        cartOverlay.addEventListener('click', (e) => {
-            e.stopPropagation();
-            toggleCartSidebar(false);
-        });
-    }
+//     // Close cart when clicking overlay
+//     const cartOverlay = document.getElementById('cart-overlay');
+//     if (cartOverlay) {
+//         cartOverlay.addEventListener('click', (e) => {
+//             e.stopPropagation();
+//             toggleCartSidebar(false);
+//         });
+//     }
     
-    // Close cart when pressing Escape key
-    document.addEventListener('keydown', (e) => {
-        const cartSidebar = document.getElementById('cart-sidebar');
-        if (e.key === 'Escape' && cartSidebar && !cartSidebar.classList.contains('translate-x-full')) {
-            toggleCartSidebar(false);
-        }
-    });
-}
+//     // Close cart when pressing Escape key
+//     document.addEventListener('keydown', (e) => {
+//         const cartSidebar = document.getElementById('cart-sidebar');
+//         if (e.key === 'Escape' && cartSidebar && !cartSidebar.classList.contains('translate-x-full')) {
+//             toggleCartSidebar(false);
+//         }
+//     });
+// }
 
 // Render cart items in the sidebar
 function renderCartItems() {

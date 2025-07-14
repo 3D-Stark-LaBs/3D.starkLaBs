@@ -690,8 +690,17 @@
 
 <!-- Cart Backdrop -->
 <div id="cart-backdrop" class="fixed inset-0 bg-black/50 z-[10000] hidden opacity-0 transition-opacity duration-300"></div>
+<script type="importmap">
+    {
+      "imports": {
+        "three": "https://cdn.jsdelivr.net/npm/three@0.166.1/build/three.module.js",
+        "three/addons/": "https://cdn.jsdelivr.net/npm/three@0.166.1/examples/jsm/"
+      }
+    }
+    </script>
 
-    <script src="./main.js" type="module"></script>
+    <script type="module" src="viewer.js"></script>
+    <script src="./main.js" ></script>
     <!-- Test script for modal functionality -->
     <script src="./test-modal.js" type="module"></script>
     <script src="cart.js"></script>
