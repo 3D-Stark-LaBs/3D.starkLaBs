@@ -140,6 +140,7 @@ function loadCartSummary() {
     }
   
     console.log('🧹 Cart cleared after order!');
+    window.location.reload();
   }
   
 

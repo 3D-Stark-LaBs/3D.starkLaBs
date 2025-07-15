@@ -1,0 +1,32 @@
+[
+  {
+    "id": "event-1",
+    "title": "Flash Sale",
+    "description": "Huge discounts for 48 hours only!",
+    "discount": 30,
+    "from": "2025-07-14T00:00:00Z",
+    "to": "2025-07-16T00:00:00Z",
+    "image": "events/event-1/1.png",
+    "tags": ["Hot", "Limited"]
+  },
+  {
+    "id": "event-2",
+    "title": "Back to School Design Week",
+    "description": "Educational models at special rates for students!",
+    "discount": "15%",
+    "from": "2025-07-16T00:00:00",
+    "to": "2025-07-17T23:59:59",
+    "image": "events/event-2/1.png",
+    "tags": ["New"]
+  },
+  {
+    "id": "event-3",
+    "title": "Summer Print Fest",
+    "description": "Celebrate summer with cool 3D models!",
+    "discount": "20%",
+    "from": "2025-07-25T00:00:00",
+    "to": "2025-07-30T23:59:59",
+    "image": "events/event-3/1.png",
+    "tags": ["New", "Hot"]
+  }
+]
