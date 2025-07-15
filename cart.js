@@ -61,32 +61,47 @@ function setupAddToCartButton() {
     }
 }
 
-function addToCart() {
+function openModal(project) {
+
+    let galleryData = [];
+
+fetch('gallery.json')
+  .then(res => res.json())
+  .then(data => {
+    galleryData = data;
+  });
+
+    const modal = document.getElementById('project-modal');
+    modal.setAttribute('data-project-id', project.id);
+    modal.setAttribute('data-design-link', project.designLink || '');
+    modal.setAttribute('data-material', project.material || 'Not specified');
+    // باقي الإعدادات مثل العنوان، السعر، الصور...
+  }
+  
+  function addToCart() {
     const modal = document.getElementById('project-modal');
     const projectId = modal.getAttribute('data-project-id')?.trim();
-    const projectTitle = document.getElementById('modal-project-title')?.textContent?.trim() || 'Untitled Project';
-    const projectPrice = parseFloat(document.getElementById('modal-project-price')?.textContent?.replace(/[^0-9.]/g, '')) || 0;
-    const projectImage = document.querySelector('#carousel-slides img')?.src || document.querySelector('#modal-main-image')?.src || './images/placeholder.jpg';
-    const designLink = modal.getAttribute('data-design-link') || ''; // ✅ تأكد من وجوده
-    const material = modal.getAttribute('data-material') || 'Not specified'; // ✅ خامة الطباعة
   
-    const fallbackId = `${projectTitle}-${projectPrice}`;
-    const itemId = projectId || fallbackId;
+    const project = galleryData.find(p => p.id === projectId);
   
+    if (!project) {
+      console.error("❌ Project not found in gallery data.");
+      return;
+    }
+  
+    const itemId = project.id;
     const cartItem = {
       id: itemId,
-      title: projectTitle,
-      price: projectPrice,
+      title: project.title,
+      price: project.price,
       quantity: 1,
-      image: projectImage,
-      designLink: designLink,
-      material: material, // ✅ إضافة الخامة
+      image: project.thumbnail, // أو من الصور
+      designLink: project.designLink || '',
+      material: project.material || 'Not specified',
       timestamp: Date.now()
     };
   
-    const existingItemIndex = cart.findIndex(item =>
-      item.id === itemId || (item.title === projectTitle && item.price === projectPrice)
-    );
+    const existingItemIndex = cart.findIndex(item => item.id === itemId);
   
     if (existingItemIndex > -1) {
       cart[existingItemIndex].quantity += 1;
@@ -98,7 +113,7 @@ function addToCart() {
     updateCartUI();
     showNotification('Item added to cart!');
   }
-
+  
   
 function saveCart() {
     try {
