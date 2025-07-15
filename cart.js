@@ -114,6 +114,12 @@ fetch('gallery.json')
     showNotification('Item added to cart!');
   }
   
+
+  function orderNow() {
+    addToCart() 
+    closeModal()
+    go_order()
+  }
   
 function saveCart() {
     try {
@@ -205,7 +211,7 @@ function updateCartUI() {
                     <p>${calculateSubtotal().toFixed(2)} EGP</p>
                 </div>
                 <p class="text-sm text-gray-500 dark:text-gray-400 mb-6">Price includes VAT. Shipping not included.</p>
-                <button type="button" class="w-full flex justify-center items-center px-6 py-3 border border-transparent rounded-md shadow-sm text-base font-medium text-white bg-brand-indigo hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
+                <button id="checkout-btn" type="button" onclick="go_order()" class="w-full flex justify-center items-center px-6 py-3 border border-transparent rounded-md shadow-sm text-base font-medium text-white bg-brand-indigo hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
                     Checkout
                 </button>
                 <div class="mt-4 flex justify-center text-sm text-center text-gray-500 dark:text-gray-400">
@@ -219,6 +225,11 @@ function updateCartUI() {
     updateCartCount();
 }
 
+function go_order() {
+
+    window.spaNavigator.navigateTo('order');
+}
+  
 function calculateSubtotal() {
     return cart.reduce((total, item) => total + (item.price * item.quantity), 0);
 }

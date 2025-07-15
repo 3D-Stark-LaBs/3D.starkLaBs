@@ -234,6 +234,8 @@ document.addEventListener('DOMContentLoaded', () => {
         closeModal(); // Optionally close modal after adding to cart
     });
 
+
+    
     // Keyboard navigation for the modal
     document.addEventListener('keydown', (e) => {
         if (modal.classList.contains('hidden')) return;
