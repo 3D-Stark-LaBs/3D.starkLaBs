@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>3D Stark Labs</title>
+    <title>Stark Labs</title>
     <link rel="icon" href="favicon.ico" type="image/x-icon">
     <script src="https://cdn.tailwindcss.com"></script>
     <script>
@@ -64,7 +64,7 @@
         <div class="h-full w-16 bg-white dark:bg-dark-800 shadow-lg flex flex-col items-center justify-between py-12 border-r border-gray-200 dark:border-dark-700">
             <!-- Logo (Rotated) with better positioning and safe area padding -->
             <div class="sidebar-logo transform -rotate-90 origin-center whitespace-nowrap text-2xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-brand-indigo to-brand-purple dark:from-brand-yellow dark:to-brand-orange px-4">
-                3D Stark Labs
+                Stark LaBs
             </div>
             
             <!-- Navigation Icons -->
@@ -74,11 +74,7 @@
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6" />
                     </svg>
                 </a>
-                <a href="#about" class="nav-icon group" data-section="about" title="About">
-                    <svg class="w-6 h-6 group-[.active]:text-brand-indigo dark:group-[.active]:text-brand-yellow" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
-                    </svg>
-                </a>
+
                 <a href="#gallery" class="nav-icon group" data-section="gallery" title="Gallery">
                     <svg class="w-6 h-6 group-[.active]:text-brand-indigo dark:group-[.active]:text-brand-yellow" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z" />
@@ -99,6 +95,11 @@
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 11V7a4 4 0 00-8 0v4M5 9h14l1 12H4L5 9z" />
                     </svg>
                 </a>
+                <a href="#about" class="nav-icon group" data-section="about" title="About">
+                    <svg class="w-6 h-6 group-[.active]:text-brand-indigo dark:group-[.active]:text-brand-yellow" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+                    </svg>
+                </a>
             </div>
             
             <!-- Bottom Icons -->
@@ -107,7 +108,7 @@
                     <svg class="w-6 h-6 text-gray-600 dark:text-gray-300 group-hover:text-brand-indigo dark:group-hover:text-brand-yellow" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 3h2l.4 2M7 13h10l4-8H5.4M7 13L5.4 5M7 13l-2.293 2.293c-.63.63-.184 1.707.707 1.707H17m0 0a2 2 0 100 4 2 2 0 000-4zm-8 2a2 2 0 11-4 0 2 2 0 014 0z" />
                     </svg>
-                    <span id="mobile-cart-item-count" class="absolute -top-1 -right-1 bg-brand-orange text-white text-xs font-bold rounded-full h-5 w-5 flex items-center justify-center hidden">0</span>
+                    <span id="mobile-cart-item-count" class="absolute -top-1 -right-1 bg-brand-orange text-white text-xs font-bold rounded-full h-5 w-5 items-center justify-center hidden">0</span>
                 </button>
                 
                 <button id="mobile-theme-toggle" class="w-10 h-10 rounded-full flex items-center justify-center text-gray-700 dark:text-gray-200 hover:bg-gray-100 dark:hover:bg-dark-700 transition-colors" aria-label="Toggle theme" title="Toggle theme">
@@ -122,21 +123,22 @@
     <header class="hidden md:block bg-white dark:bg-dark-800 shadow-md sticky top-0 z-50 border-b border-gray-200 dark:border-dark-700">
         <nav class="container mx-auto px-4 sm:px-6 lg:px-8 py-4 flex justify-between items-center">
             <div class="logo text-2xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-brand-indigo to-brand-purple dark:from-brand-yellow dark:to-brand-orange">
-                3D Stark Labs
+            Stark LaBs
             </div>
             <div class="nav-links flex items-center gap-4 sm:gap-6">
                 <a href="#home" class="nav-link active" data-section="home">Home</a>
-                <a href="#about" class="nav-link" data-section="about">About</a>
                 <a href="#gallery" class="nav-link" data-section="gallery">Gallery</a>
                 <a href="#services" class="nav-link" data-section="services">Services</a>
                 <a href="#pricing" class="nav-link" data-section="pricing">Pricing</a>
                 <a href="#order" class="nav-link" data-section="order">Order</a>
+                <a href="#about" class="nav-link" data-section="about">About</a>
+
                 <button id="cart-toggle-button" type="button" class="relative text-gray-600 dark:text-gray-300 hover:text-brand-indigo dark:hover:text-brand-yellow focus:outline-none">
                     <span class="sr-only">Open cart</span>
                     <svg class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 3h2l.4 2M7 13h10l4-8H5.4M7 13L5.4 5M7 13l-2.293 2.293c-.63.63-.184 1.707.707 1.707H17m0 0a2 2 0 100 4 2 2 0 000-4zm-8 2a2 2 0 11-4 0 2 2 0 014 0z" />
                     </svg>
-                    <span id="cart-item-count" class="absolute -top-2 -right-2 bg-brand-orange text-white text-xs font-bold rounded-full h-5 w-5 flex items-center justify-center hidden">0</span>
+                    <span id="cart-item-count" class="absolute -top-2 -right-2 bg-brand-orange text-white text-xs font-bold rounded-full h-5 w-5 items-center justify-center hidden">0</span>
                 </button>
 
                 <button id="theme-toggle" class="theme-toggle w-10 h-10 rounded-full flex items-center justify-center text-gray-700 dark:text-gray-200 hover:bg-gray-100 dark:hover:bg-dark-700 transition-colors" aria-label="Toggle theme">
@@ -177,7 +179,7 @@
                     <!-- Company Name -->
                     <h1 class="text-4xl sm:text-5xl md:text-6xl font-bold text-white mb-6 relative z-10">
                         <span class="bg-clip-text text-transparent bg-gradient-to-r from-brand-yellow to-brand-orange">
-                            Stark Labs
+                            Stark LaBs
                         </span>
                     </h1>
                     
@@ -224,45 +226,9 @@
             </div>
         </section>
 
-        <section id="about" class="section min-h-screen py-20 bg-white dark:bg-dark-900 hidden opacity-0 transition-opacity duration-300">
-            <div class="container mx-auto px-4 sm:px-6 lg:px-8">
-                <h2 class="text-3xl sm:text-4xl font-bold text-center mb-12 relative inline-block">
-                    <span>About Us</span>
-                    <span class="absolute bottom-[-8px] left-1/2 w-16 h-1 bg-gradient-to-r from-brand-yellow to-brand-orange rounded-full transform -translate-x-1/2"></span>
-                </h2>
-                <div class="max-w-4xl mx-auto text-center">
-                    <p class="text-lg text-gray-600 dark:text-gray-300 mb-8">
-                        We are a team of passionate designers and engineers dedicated to bringing your ideas to life through cutting-edge 3D printing technology. 
-                        With years of experience in the industry, we combine creativity with precision to deliver exceptional results.
-                    </p>
-                    <div class="grid md:grid-cols-3 gap-8 mt-12">
-                        <div class="p-6 bg-white dark:bg-dark-800 rounded-xl shadow-md hover:shadow-lg transition-shadow">
-                            <div class="w-16 h-16 mx-auto mb-4 rounded-full bg-indigo-100 dark:bg-indigo-900 flex items-center justify-center">
-                                <span class="text-2xl">🚀</span>
-                            </div>
-                            <h3 class="text-xl font-bold mb-2">Innovation</h3>
-                            <p class="text-gray-600 dark:text-gray-300">Pushing the boundaries of 3D printing technology</p>
-                        </div>
-                        <div class="p-6 bg-white dark:bg-dark-800 rounded-xl shadow-md hover:shadow-lg transition-shadow">
-                            <div class="w-16 h-16 mx-auto mb-4 rounded-full bg-yellow-100 dark:bg-yellow-900 flex items-center justify-center">
-                                <span class="text-2xl">✨</span>
-                            </div>
-                            <h3 class="text-xl font-bold mb-2">Quality</h3>
-                            <p class="text-gray-600 dark:text-gray-300">Uncompromising standards in every print</p>
-                        </div>
-                        <div class="p-6 bg-white dark:bg-dark-800 rounded-xl shadow-md hover:shadow-lg transition-shadow">
-                            <div class="w-16 h-16 mx-auto mb-4 rounded-full bg-purple-100 dark:bg-purple-900 flex items-center justify-center">
-                                <span class="text-2xl">💡</span>
-                            </div>
-                            <h3 class="text-xl font-bold mb-2">Creativity</h3>
-                            <p class="text-gray-600 dark:text-gray-300">Transforming ideas into tangible reality</p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
 
-        <section id="gallery" class="section min-h-screen py-20 bg-gray-50 dark:bg-dark-800 hidden opacity-0 transition-opacity duration-300">
+          
+        <section id="gallery" class="section min-h-screen py-20 bg-gray-50 dark:bg-dark-800  transition-opacity duration-300">
             <div class="px-4 sm:px-6 lg:px-8 w-full">
                 <h2 class="text-3xl sm:text-4xl font-bold text-center mb-12 relative inline-block">
                     <span>Our Work</span>
@@ -274,98 +240,236 @@
             </div>
         </section>
 
-        <section id="services" class="section min-h-screen py-20 bg-white dark:bg-dark-900 hidden opacity-0 transition-opacity duration-300">
-            <div class="container mx-auto px-4 sm:px-6 lg:px-8">
-                <h2 class="text-3xl sm:text-4xl font-bold text-center mb-12 relative inline-block">
-                    <span>Our Services</span>
-                    <span class="absolute bottom-[-8px] left-1/2 w-16 h-1 bg-gradient-to-r from-brand-indigo to-brand-purple rounded-full transform -translate-x-1/2"></span>
-                </h2>
-                <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-                    <div class="service-card p-6 rounded-xl bg-white dark:bg-dark-800 shadow-md hover:shadow-lg transition-all duration-300 transform hover:-translate-y-1">
-                        <div class="w-14 h-14 mb-4 rounded-lg bg-indigo-100 dark:bg-indigo-900 flex items-center justify-center">
-                            <span class="text-2xl">🖨️</span>
-                        </div>
-                        <h3 class="text-xl font-bold mb-3">Rapid Prototyping</h3>
-                        <p class="text-gray-600 dark:text-gray-300">Quickly turn your ideas into physical prototypes with our advanced 3D printing technology.</p>
-                    </div>
-                    <div class="service-card p-6 rounded-xl bg-white dark:bg-dark-800 shadow-md hover:shadow-lg transition-all duration-300 transform hover:-translate-y-1">
-                        <div class="w-14 h-14 mb-4 rounded-lg bg-yellow-100 dark:bg-yellow-900 flex items-center justify-center">
-                            <span class="text-2xl">🎨</span>
-                        </div>
-                        <h3 class="text-xl font-bold mb-3">3D Design Services</h3>
-                        <p class="text-gray-600 dark:text-gray-300">Custom 3D modeling and design services to bring your vision to life.</p>
-                    </div>
-                    <div class="service-card p-6 rounded-xl bg-white dark:bg-dark-800 shadow-md hover:shadow-lg transition-all duration-300 transform hover:-translate-y-1">
-                        <div class="w-14 h-14 mb-4 rounded-lg bg-purple-100 dark:bg-purple-900 flex items-center justify-center">
-                            <span class="text-2xl">🏭</span>
-                        </div>
-                        <h3 class="text-xl font-bold mb-3">Production</h3>
-                        <p class="text-gray-600 dark:text-gray-300">High-quality production runs for your 3D printed parts and products.</p>
-                    </div>
-                </div>
-            </div>
-        </section>
 
-        <section id="pricing" class="section min-h-screen py-20 bg-gray-50 dark:bg-dark-800 hidden opacity-0 transition-opacity duration-300">
+
+        <section id="services" class="py-20 bg-white dark:bg-dark-900 text-gray-800 dark:text-white">
             <div class="container mx-auto px-4 sm:px-6 lg:px-8">
-                <h2 class="text-3xl sm:text-4xl font-bold text-center mb-12 relative inline-block">
-                    <span>Pricing</span>
-                    <span class="absolute bottom-[-8px] left-1/2 w-16 h-1 bg-gradient-to-r from-brand-yellow to-brand-orange rounded-full transform -translate-x-1/2"></span>
+              <!-- Section Header -->
+              <div class="text-center mb-12">
+                <h2 class="text-3xl sm:text-4xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-brand-indigo to-brand-purple dark:from-brand-yellow dark:to-brand-orange mb-4 animate-fade-in">
+                  Our Services
                 </h2>
-                <div class="max-w-5xl mx-auto">
-                    <div class="bg-white dark:bg-dark-900 rounded-xl shadow-lg overflow-hidden">
-                        <div class="p-8 text-center">
-                            <h3 class="text-2xl font-bold mb-4">Custom Quotes</h3>
-                            <p class="text-gray-600 dark:text-gray-300 mb-8">Our pricing is based on material, print time, and complexity. Contact us for a custom quote tailored to your specific needs.</p>
-                            <div class="grid md:grid-cols-3 gap-8 mt-12">
-                                <div class="pricing-tier p-6 rounded-lg border border-gray-200 dark:border-dark-700">
-                                    <h4 class="text-xl font-bold mb-2">Basic</h4>
-                                    <div class="text-4xl font-bold mb-4">$10+</div>
-                                    <p class="text-gray-600 dark:text-gray-300 mb-6">Simple prints, standard materials</p>
-                                    <ul class="space-y-2 mb-6 text-left">
-                                        <li class="flex items-center"><span class="text-green-500 mr-2">✓</span> <span>Standard Materials</span></li>
-                                        <li class="flex items-center"><span class="text-green-500 mr-2">✓</span> <span>Up to 100g</span></li>
-                                        <li class="flex items-center"><span class="text-green-500 mr-2">✓</span> <span>1-3 Day Turnaround</span></li>
-                                    </ul>
-                                    <a href="#order" class="btn-secondary w-full">Get Started</a>
-                                </div>
-                                <div class="pricing-tier p-6 rounded-lg border-2 border-brand-indigo dark:border-brand-yellow relative bg-gradient-to-br from-indigo-50 to-purple-50 dark:from-dark-700 dark:to-dark-800 transform scale-105 z-10">
-                                    <div class="absolute top-0 right-0 bg-brand-indigo dark:bg-brand-yellow text-white text-xs font-bold px-3 py-1 rounded-bl-lg">Popular</div>
-                                    <h4 class="text-xl font-bold mb-2">Standard</h4>
-                                    <div class="text-4xl font-bold mb-4">$30+</div>
-                                    <p class="text-gray-600 dark:text-gray-300 mb-6">Medium complexity, premium materials</p>
-                                    <ul class="space-y-2 mb-6 text-left">
-                                        <li class="flex items-center"><span class="text-green-500 mr-2">✓</span> <span>Premium Materials</span></li>
-                                        <li class="flex items-center"><span class="text-green-500 mr-2">✓</span> <span>Up to 500g</span></li>
-                                        <li class="flex items-center"><span class="text-green-500 mr-2">✓</span> <span>3-5 Day Turnaround</span></li>
-                                        <li class="flex items-center"><span class="text-green-500 mr-2">✓</span> <span>Basic Finishing</span></li>
-                                    </ul>
-                                    <a href="#order" class="btn-primary w-full">Get Started</a>
-                                </div>
-                                <div class="pricing-tier p-6 rounded-lg border border-gray-200 dark:border-dark-700">
-                                    <h4 class="text-xl font-bold mb-2">Premium</h4>
-                                    <div class="text-4xl font-bold mb-4">$100+</div>
-                                    <p class="text-gray-600 dark:text-gray-300 mb-6">Complex projects, custom solutions</p>
-                                    <ul class="space-y-2 mb-6 text-left">
-                                        <li class="flex items-center"><span class="text-green-500 mr-2">✓</span> <span>All Materials</span></li>
-                                        <li class="flex items-center"><span class="text-green-500 mr-2">✓</span> <span>No Size Limit</span></li>
-                                        <li class="flex items-center"><span class="text-green-500 mr-2">✓</span> <span>Priority Support</span></li>
-                                        <li class="flex items-center"><span class="text-green-500 mr-2">✓</span> <span>Premium Finishing</span></li>
-                                    </ul>
-                                    <a href="#contact" class="btn-secondary w-full">Contact Us</a>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
+                <p class="text-gray-600 dark:text-gray-300 max-w-2xl mx-auto text-lg animate-fade-in delay-100">
+                  Discover the creative and technical services Stark Labs proudly offers to help you build, design, and innovate.
+                </p>
+              </div>
+          
+              <!-- Services Cards -->
+              <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <!-- 3D Printing Card -->
+                <div class="bg-white dark:bg-dark-800 rounded-2xl shadow-lg p-6 transform hover:-translate-y-1 hover:shadow-xl transition-all duration-300 animate-slide-in-up">
+                  <h3 class="text-xl font-bold mb-2 bg-clip-text text-transparent bg-gradient-to-r from-brand-orange to-brand-indigo dark:from-brand-purple dark:to-brand-yellow">
+                    3D Printing
+                  </h3>
+                  <p class="text-gray-700 dark:text-gray-300 mb-2">
+                    High-precision 3D printing using PLA and other materials with customizable resolution and finishes.
+                  </p>
+                  <ul class="list-disc pl-5 text-sm text-gray-600 dark:text-orange-400">
+                    <li>Fast prototyping</li>
+                    <li>High-quality finishes</li>
+                    <li>Durable materials</li>
+                  </ul>
                 </div>
+          
+                <!-- 3D Design Card -->
+                <div class="bg-white dark:bg-dark-800 rounded-2xl shadow-lg p-6 transform hover:-translate-y-1 hover:shadow-xl transition-all duration-300 animate-slide-in-up delay-100">
+                  <h3 class="text-xl font-bold mb-2 bg-clip-text text-transparent bg-gradient-to-r from-brand-orange to-brand-indigo dark:from-brand-purple dark:to-brand-yellow">
+                    3D Design
+                  </h3>
+                  <p class="text-gray-700 dark:text-gray-300 mb-2">
+                    Custom 3D modeling tailored to your ideas with full support for modifications and previews.
+                  </p>
+                  <ul class="list-disc pl-5 text-sm text-gray-600 dark:text-orange-400">
+                    <li>Professional CAD design</li>
+                    <li>Iterative improvement</li>
+                    <li>Printable outputs</li>
+                  </ul>
+                </div>
+          
+                <!-- Video Editing Card -->
+                <div class="bg-white dark:bg-dark-800 rounded-2xl shadow-lg p-6 transform hover:-translate-y-1 hover:shadow-xl transition-all duration-300 animate-slide-in-up delay-200">
+                  <h3 class="text-xl font-bold mb-2 bg-clip-text text-transparent bg-gradient-to-r from-brand-orange to-brand-indigo dark:from-brand-purple dark:to-brand-yellow">
+                    Video Editing
+                  </h3>
+                  <p class="text-gray-700 dark:text-gray-300 mb-2">
+                    Smooth and creative editing for shorts, YouTube videos, and promotional content.
+                  </p>
+                  <ul class="list-disc pl-5 text-sm text-gray-600 dark:text-orange-400">
+                    <li>CapCut & Premiere Pro workflows</li>
+                    <li>Transitions, effects & music</li>
+                    <li>Short-form and long-form formats</li>
+                  </ul>
+                </div>
+          
+                <!-- Web & Desktop Development Card -->
+                <div class="bg-white dark:bg-dark-800 rounded-2xl shadow-lg p-6 transform hover:-translate-y-1 hover:shadow-xl transition-all duration-300 animate-slide-in-up">
+                  <h3 class="text-xl font-bold mb-2 bg-clip-text text-transparent bg-gradient-to-r from-brand-orange to-brand-indigo dark:from-brand-purple dark:to-brand-yellow">
+                    Web & Desktop Development
+                  </h3>
+                  <p class="text-gray-700 dark:text-gray-300 mb-2">
+                    We build responsive websites, modern interfaces, and desktop software for Windows/Linux.
+                  </p>
+                  <ul class="list-disc pl-5 text-sm text-purple-600 dark:text-orange-400">
+                    <li>Full-stack web solutions</li>
+                    <li>Cross-platform apps</li>
+                    <li>Modern UI/UX</li>
+                  </ul>
+                </div>
+          
+                <!-- Microsoft Office Services Card -->
+                <div class="bg-white dark:bg-dark-800 rounded-2xl shadow-lg p-6 transform hover:-translate-y-1 hover:shadow-xl transition-all duration-300 animate-slide-in-up delay-100">
+                  <h3 class="text-xl font-bold mb-2 bg-clip-text text-transparent bg-gradient-to-r from-brand-orange to-brand-indigo dark:from-brand-purple dark:to-brand-yellow">
+                    Microsoft Office Services
+                  </h3>
+                  <p class="text-gray-700 dark:text-gray-300 mb-2">
+                    From Excel reports to PowerPoint designs and Word templates, we deliver office productivity at its finest.
+                  </p>
+                  <ul class="list-disc pl-5 text-lg text-gray-600 dark:text-orange-400">
+                    <li>Document formatting</li>
+                    <li>Automated spreadsheets</li>
+                    <li>Professional presentations</li>
+                  </ul>
+                </div>
+              </div>
             </div>
-        </section>
+          </section>
+          
+          <!-- Animations -->
+          <style>
+          @keyframes fade-in {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+          }
+          
+          @keyframes slide-in-up {
+            from { opacity: 0; transform: translateY(40px); }
+            to { opacity: 1; transform: translateY(0); }
+          }
+          
+          .animate-fade-in {
+            animation: fade-in 0.8s ease-out forwards;
+          }
+          
+          .animate-slide-in-up {
+            animation: slide-in-up 0.8s ease-out forwards;
+          }
+          
+          .delay-100 { animation-delay: 0.1s; }
+          .delay-200 { animation-delay: 0.2s; }
+          </style>
+          
+          <section id="pricing" class="py-20 bg-white dark:bg-dark-900 text-gray-800 dark:text-white">
+            <div class="container mx-auto px-4 sm:px-6 lg:px-8">
+              <!-- Section Header -->
+              <div class="text-center mb-12">
+                <h2 class="text-3xl sm:text-4xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-brand-indigo to-brand-purple dark:from-brand-yellow dark:to-brand-orange mb-4 animate-fade-in">
+                  Pricing Policy
+                </h2>
+                <p class="text-gray-600 dark:text-gray-300 max-w-2xl mx-auto text-lg animate-fade-in delay-100">
+                  Understand how we calculate the cost of your 3D printed model based on multiple technical and service factors.
+                </p>
+              </div>
+          
+              <!-- Pricing Elements Cards -->
+              <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <!-- Weight Card -->
+                <div class="bg-yellow-50 dark:bg-dark-700 border border-yellow-200 dark:border-yellow-500 rounded-2xl shadow-md p-6 animate-slide-in-up delay-300 text-center transition-transform transform hover:-translate-y-1 hover:shadow-lg">
+                  <div class="mb-4 text-4xl text-brand-indigo dark:text-brand-yellow">
+                    ⚖️
+                  </div>
+                  <h3 class="text-xl text-brand-indigo dark:text-brand-orange font-bold mb-2">Model Weight</h3>
+                  <p class="text-gray-700 dark:text-gray-300 text-sm">
+                    Heavier models require more filament, directly increasing the printing cost.
+                  </p>
+                </div>
+          
+                <!-- Filament Type Card -->
+                <div class="bg-yellow-50 dark:bg-dark-700 border border-yellow-200 dark:border-yellow-500 rounded-2xl shadow-md p-6 animate-slide-in-up delay-300 text-center transition-transform transform hover:-translate-y-1 hover:shadow-lg">
+                  <div class="mb-4 text-4xl text-brand-purple dark:text-brand-orange">
+                    🧵
+                  </div>
+                  <h3 class="text-xl text-brand-indigo dark:text-brand-orange font-bold mb-2">Filament Type</h3>
+                  <p class="text-gray-700 dark:text-gray-300 text-sm">
+                    Different materials have different costs and printing requirements (e.g. PLA, PETG, ABS).
+                  </p>
+                </div>
+          
+                <!-- Print Time Card -->
+                <div class="bg-yellow-50 dark:bg-dark-700 border border-yellow-200 dark:border-yellow-500 rounded-2xl shadow-md p-6 animate-slide-in-up delay-300 text-center transition-transform transform hover:-translate-y-1 hover:shadow-lg">
+                  <div class="mb-4 text-4xl text-brand-orange dark:text-brand-purple">
+                    ⏱️
+                  </div>
+                  <h3 class="text-xl font-bold text-brand-indigo dark:text-brand-orange mb-2">Print Time</h3>
+                  <p class="text-gray-700 dark:text-gray-300 text-sm">
+                    Longer print jobs mean higher energy usage and machine time, affecting the total cost.
+                  </p>
+                </div>
+          
+                <!-- Resolution Card -->
+                <div class="bg-yellow-50 dark:bg-dark-700 border border-yellow-200 dark:border-yellow-500 rounded-2xl shadow-md p-6 animate-slide-in-up delay-300 text-center transition-transform transform hover:-translate-y-1 hover:shadow-lg">
+                  <div class="mb-4 text-4xl text-brand-yellow dark:text-brand-indigo">
+                    🎯
+                  </div>
+                  <h3 class="text-xl font-bold text-brand-indigo dark:text-brand-orange mb-2">Resolution</h3>
+                  <p class="text-gray-700 dark:text-gray-300 text-sm">
+                    Higher resolution results in more detailed prints but takes longer to produce, increasing cost.
+                  </p>
+                </div>
+          
+                <!-- Maintenance Card -->
+                <div class="bg-yellow-50 dark:bg-dark-700 border border-yellow-200 dark:border-yellow-500 rounded-2xl shadow-md p-6 animate-slide-in-up delay-300 text-center transition-transform transform hover:-translate-y-1 hover:shadow-lg">
+                  <div class="mb-4 text-4xl text-red-500 dark:text-red-400">
+                    🛠️
+                  </div>
+                  <h3 class="text-xl font-bold text-brand-indigo dark:text-brand-orange mb-2">Maintenance & Supervision</h3>
+                  <p class="text-gray-700 dark:text-gray-300 text-sm">
+                    Includes printer maintenance, quality checks, and human supervision time during printing.
+                  </p>
+                </div>
+                <div class="bg-yellow-50 dark:bg-dark-700 border border-yellow-200 dark:border-yellow-500 rounded-2xl shadow-md p-6 animate-slide-in-up delay-300 text-center transition-transform transform hover:-translate-y-1 hover:shadow-lg">
+                    <div class="mb-3 text-3xl text-red-500 dark:text-red-400">
+                      ⚠️
+                    </div>
+                    <h3 class="text-lg font-bold text-brand-indigo dark:text-brand-orange mb-2">Note</h3>
+                    <p class="text-sm text-gray-700 dark:text-gray-300 ">
+                      Currently, we don't offer a live calculator. Contact us for a custom quote based on your model.
+                    </p>
+                  </div>
+              </div>
+            </div>
+          </section>
+          
+          <!-- Animations -->
+          <style>
+          @keyframes fade-in {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+          }
+          
+          @keyframes slide-in-up {
+            from { opacity: 0; transform: translateY(40px); }
+            to { opacity: 1; transform: translateY(0); }
+          }
+          
+          .animate-fade-in {
+            animation: fade-in 0.8s ease-out forwards;
+          }
+          
+          .animate-slide-in-up {
+            animation: slide-in-up 0.8s ease-out forwards;
+          }
+          
+          .delay-100 { animation-delay: 0.1s; }
+          .delay-200 { animation-delay: 0.2s; }
+          </style>
+          
+
         <section id="order" class="min-h-screen py-12 sm:py-20 bg-white dark:bg-dark-900">
             <div class="container mx-auto px-4 sm:px-6 lg:px-8">
               <!-- Section Header -->
               <div class="text-center mb-12">
                 <h2 class="text-3xl sm:text-4xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-brand-indigo to-brand-purple dark:from-brand-yellow dark:to-brand-orange mb-4">
-                  Place Your 3D Printing Order
+                  Place Your Order
                 </h2>
                 <p class="text-gray-600 dark:text-gray-300 max-w-2xl mx-auto">
                   Get a quote for your custom 3D printing project. Our team will review your request within 24 hours.
@@ -490,7 +594,7 @@
                   <!-- Right Side - Support Info -->
                   <div class="bg-gradient-to-br from-brand-indigo to-brand-purplelg:p-10 text-white">
 
-                    <div class="bg-gradient-to-br from-brand-indigo to-brand-purple lg:p-10 text-white rounded-2xl shadow-xl">
+                    <div class="bg-gradient-to-br from-brand-indigo p-4 to-brand-purple lg:p-10 text-white rounded-2xl shadow-xl">
                         <div class="flex flex-col justify-between h-full">
                           
 
@@ -591,10 +695,62 @@
           </section>
     </div>
 
+    <section id="about" class="py-20 bg-white dark:bg-dark-900 text-gray-800 dark:text-white">
+        <div class="container mx-auto px-4 sm:px-6 lg:px-8">
+          <!-- Section Header -->
+          <div class="text-center mb-12">
+            <h2 class="text-3xl sm:text-4xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-brand-indigo to-brand-purple dark:from-brand-yellow dark:to-brand-orange mb-4">
+              About Stark Labs
+            </h2>
+            <p class="text-gray-600 dark:text-gray-300 max-w-2xl mx-auto text-lg">
+              Founded on <strong>July 8, 2025</strong>, Stark Labs is a rising startup redefining creativity, design, and digital manufacturing.
+            </p>
+          </div>
+      
+          <!-- About Description -->
+          <div class="bg-white dark:bg-dark-800 rounded-2xl shadow-xl p-8 sm:p-10 mb-16">
+            <p class="text-base sm:text-lg leading-relaxed text-gray-700 dark:text-gray-300">
+              Stark Labs is more than a 3D printing shop — it's a full digital lab. We specialize in <strong>3D printing</strong>, <strong>3D design</strong>, <strong>web and desktop development</strong>, <strong>video editing</strong>, and complete <strong>Microsoft Office services</strong>. Our team combines innovation, technical expertise, and creative power to bring any idea to life. Whether you're a business or a hobbyist, we've got a solution tailored for you.
+            </p>
+            <div class="mt-6 text-base text-gray-700 dark:text-gray-300">
+              <p><strong>Our vision:</strong> To become one of the largest digital fabrication companies in the Middle East.</p>
+              <p><strong>Our future:</strong> Expanding to CNC, producing our own filaments, and building a strong ecosystem for creators.</p>
+            </div>
+          </div>
+      
+          <!-- Team Cards -->
+          <div class="grid grid-cols-1 sm:grid-cols-2 gap-10">
+            <!-- Founder Card -->
+            <div class="bg-white dark:bg-dark-800 shadow-md rounded-xl p-6 text-center">
+              <img src="asits/1.jpg" alt="Ahmed Mohamed Attia" class="w-28 h-28 mx-auto rounded-full shadow-md mb-4">
+              <h3 class="text-xl font-semibold mb-1">Ahmed Mohamed Attia</h3>
+              <p class="text-sm text-orange-600 dark:text-orange-400 mb-2">Founder & CEO</p>
+              <p class="text-sm text-gray-700 dark:text-gray-300">Electronics & Communication Engineering Student - Zagazig University</p>
+              <div class="flex justify-center space-x-4 mt-4">
+                <a href="mailto:ahm3d.m.attia@gmail.com" class="text-brand-indigo hover:underline">Email</a>
+                <a href="https://www.linkedin.com/in/ahmed-m-attia-757aa6292/" target="_blank" rel="noopener noreferrer" class="text-brand-purple hover:underline">LinkedIn</a>
+              </div>
+            </div>
+      
+            <!-- Co-Founder Card -->
+            <div class="bg-white dark:bg-dark-800 shadow-md rounded-xl p-6 text-center">
+              <img src="asits/3.jpg" alt="Co-Founder" class="w-28 h-28 mx-auto rounded-full shadow-md mb-4">
+              <h3 class="text-xl font-semibold mb-1">Muhammad Attia EL-Boraye</h3>
+              <p class="text-sm text-orange-600 dark:text-orange-400 mb-2">Co-Founder & Assistant Manager</p>
+              <p class="text-sm text-gray-700 dark:text-gray-300">Mechanical Power Engineering Student - Zagazig University</p>
+              <div class="flex justify-center space-x-4 mt-4">
+                <a href="mailto:muhammadattia05@gmail.com" class="text-brand-indigo hover:underline">Email</a>
+                <a href="https://www.linkedin.com/in/muhammad-attia-03320a308/" target="_blank" rel="noopener noreferrer" class="text-brand-purple hover:underline">LinkedIn</a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+      
     <!-- Footer -->
     <footer class="bg-white dark:bg-dark-900 border-t border-gray-200 dark:border-dark-800 py-8">
         <div class="container mx-auto px-4 sm:px-6 lg:px-8">
-            <p class="text-sm text-center text-gray-600 dark:text-gray-400">&copy; 2025 3D Stark Labs. All rights reserved.</p>
+            <p class="text-sm text-center text-gray-600 dark:text-gray-400">&copy; 2025 Stark LaBs. All rights reserved.</p>
         </div>
     </footer>
 
@@ -650,7 +806,7 @@
                             </div>
                             
                             <!-- Thumbnails (for desktop) -->
-                            <div id="modal-thumbnail-gallery" class="hidden md:flex space-x-3 overflow-x-auto py-1 -mx-1 mt-4">
+                            <div id="modal-thumbnail-" class="hidden md:flex space-x-3 overflow-x-auto py-1 -mx-1 mt-4">
                                 <!-- Thumbnails will be inserted here by JavaScript -->
                             </div>
                             

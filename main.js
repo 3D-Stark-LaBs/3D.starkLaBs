@@ -24,7 +24,7 @@ if (typeof window.appState === 'undefined') {
             viewDetails: 'View Details',
             noItems: 'No gallery items found. Please check back later.',
             // Footer
-            copyright: ' 2025 3D Stark Labs. All rights reserved.',
+            copyright: ' 2025 Stark LaBs. All rights reserved.',
             // Theme
             toggleTheme: 'Toggle Dark Mode',
         },
@@ -1965,7 +1965,7 @@ class SPANavigator {
         section.classList.remove('opacity-0');
         
         // Update document title
-        document.title = `3D Stark Labs - ${section.querySelector('h1, h2')?.textContent || 'Home'}`;
+        document.title = `Stark LaBs - ${section.querySelector('h1, h2')?.textContent || 'Home'}`;
         
         // Re-enable transitions after they complete
         setTimeout(() => {
@@ -2163,7 +2163,7 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     }
     
-    console.log('3D Stark Labs - Gallery fully initialized');
+    console.log('Stark LaBs - Gallery fully initialized');
     
     try {
         

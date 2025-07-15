@@ -125,21 +125,56 @@ function loadCartSummary() {
   
   window.addEventListener('DOMContentLoaded', updateDeviceHint);
   
+  function clearCartAfterOrder() {
+    // مسح البيانات من localStorage
+    localStorage.removeItem('cart');
+  
+    // مسح المصفوفة من الميموري
+    if (window.cart && Array.isArray(window.cart)) {
+      window.cart.length = 0;
+    }
+  
+    // تحديث واجهة المستخدم
+    if (typeof updateCartUI === 'function') {
+      updateCartUI();
+    }
+  
+    console.log('🧹 Cart cleared after order!');
+  }
+  
+
+
   function sendWhatsAppMessage() {
     const message = buildMessage();
-    console.log("Final WhatsApp message:\n", message);
   
+    // If desktop, copy message to clipboard
+    if (!isMobileDevice()) {
+      try {
+        navigator.clipboard.writeText(message).then(() => {
+          console.log('Message copied to clipboard');
+        }).catch(err => {
+          console.error('Clipboard copy failed:', err);
+        });
+      } catch (err) {
+        console.warn('Clipboard not supported in this browser.');
+      }
+    }
+  
+    // Open WhatsApp with the message
     const encoded = encodeURIComponent(message);
     const url = `https://api.whatsapp.com/send?phone=${WHATSAPP_NUMBER}&text=${encoded}`;
-  
     window.open(url, '_blank');
+    clearCartAfterOrder();
   }
+  
+
 function sendEmailMessage(e) {
   e.preventDefault();
   const subject = '3D Printing Order Request';
   const body = encodeURIComponent(buildMessage());
   const mailto = `mailto:${EMAIL_ADDRESS}?subject=${encodeURIComponent(subject)}&body=${body}`;
   window.open(mailto, '_blank');
+  clearCartAfterOrder();
 }
 
 // Bind listeners
