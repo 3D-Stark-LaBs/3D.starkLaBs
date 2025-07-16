@@ -5,7 +5,7 @@
     "description": "Huge discounts for 48 hours only!",
     "discount": 30,
     "from": "2025-07-14T00:00:00Z",
-    "to": "2025-07-16T00:00:00Z",
+    "to": "2025-07-16T04:00:00Z",
     "image": "events/event-1/1.png",
     "tags": ["Hot", "Limited"]
   },
@@ -28,5 +28,17 @@
     "to": "2025-07-30T23:59:59",
     "image": "events/event-3/1.png",
     "tags": ["New", "Hot"]
+  },
+  {
+    "id": "event-4",
+    "title": "Designers DRAGON Sculpture",
+    "description": "Designers DRAGON Sculpture",
+    "discount": "12",
+    "from": "2025-07-15T00:00:00.000Z",
+    "to": "2025-07-18T00:00:00.000Z",
+    "image": "events/event-4/1.png",
+    "tags": [
+      "Limited"
+    ]
   }
 ]

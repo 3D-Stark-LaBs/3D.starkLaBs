@@ -442,7 +442,6 @@ function updateLikeButton(projectId, liked) {
     }
     localStorage.setItem('likedProjects', JSON.stringify(likedProjects));
 }
-const modal = document.getElementById('project-modal');
 
 // Handle like button click
 function handleLikeClick(projectId) {
@@ -478,6 +477,7 @@ function openProjectModal(project) {
 
     showProjectModal(project);
 }
+const modal = document.getElementById('project-modal');
 
 
 function showProjectModal(project) {
