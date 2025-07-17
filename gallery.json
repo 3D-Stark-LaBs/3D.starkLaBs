@@ -44,6 +44,29 @@
     "gallery/post-2/5.jpg"
   ],
   "tags": []
+},
+  {
+  "id": "post-3",
+  "title": "Wolf Decor",
+  "material": "PLA",
+  "weight": 85,
+  "resolution": "0.12",
+  "price": 195,
+  "printTime": "6",
+  "designLink": "https://www.printables.com/model/1161859-wolf-decor/files",
+  "description": "5*9*10\nadjustable",
+  "likes": 125,
+  "date": "2025-07-17",
+  "thumbnail": "gallery/post-3/1.jpg",
+  "model": "gallery/post-3/model.stl",
+  "images": [
+    "gallery/post-3/1.jpg",
+    "gallery/post-3/2.jpg",
+    "gallery/post-3/3.jpg",
+    "gallery/post-3/4.jpg",
+    "gallery/post-3/5.jpg"
+  ],
+  "tags": []
 }
 ]
  
