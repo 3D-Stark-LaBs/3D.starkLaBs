@@ -21,6 +21,29 @@
     "gallery/post-1/5.jpg"
   ],
   "tags": []
+},
+  {
+  "id": "post-2",
+  "title": "Mini Samurai Decor",
+  "material": "PLA",
+  "weight": 90,
+  "resolution": "0.12",
+  "price": 215,
+  "printTime": "8 h",
+  "designLink": "https://www.printables.com/model/1182836-mini-samurai-decor/files",
+  "description": "55*13*13  cm \nAdjustable ",
+  "likes": 68,
+  "date": "2025-07-17",
+  "thumbnail": "gallery/post-2/1.jpg",
+  "model": "gallery/post-2/model.stl",
+  "images": [
+    "gallery/post-2/1.jpg",
+    "gallery/post-2/2.jpg",
+    "gallery/post-2/3.jpg",
+    "gallery/post-2/4.jpg",
+    "gallery/post-2/5.jpg"
+  ],
+  "tags": []
 }
 ]
  
