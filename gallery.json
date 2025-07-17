@@ -67,6 +67,29 @@
       "gallery/post-3/5.jpg"
     ],
     "tags": []
+  },
+    {
+    "id": "post-3",
+    "title": "Pirate Benchy",
+    "material": "PLA",
+    "weight": 25,
+    "resolution": ".2",
+    "price": 65,
+    "printTime": "2",
+    "designLink": "https://www.printables.com/model/1344633-pirate-benchy",
+    "description": "This pirate benchy makes a great addition to any benchy collection",
+    "likes": 232,
+    "date": "2025-07-13",
+    "thumbnail": "gallery/post-3/1.jpg",
+    "model": "gallery/post-3/model.stl",
+    "images": [
+      "gallery/post-3/1.jpg",
+      "gallery/post-3/2.jpg",
+      "gallery/post-3/3.jpg",
+      "gallery/post-3/4.jpg",
+      "gallery/post-3/5.jpg"
+    ],
+    "tags": []
   }
 ]
  
