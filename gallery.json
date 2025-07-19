@@ -1,72 +1,72 @@
 [
   {
-    "id": "post-1",
-    "title": "Halo Magnum ",
-    "material": "PLA",
-    "weight": 630,
-    "resolution": ".2",
-    "price": 1080,
-    "printTime": "25 h",
-    "designLink": "https://www.printables.com/model/1310709-halo-magnum-replica-with-moving-parts",
-    "description": "Halo Magnum Replica with moving parts",
-    "likes": 125,
-    "date": "2025-07-13",
-    "thumbnail": "gallery/post-1/1.jpg",
-    "model": "gallery/post-1/model.stl",
-    "images": [
-      "gallery/post-1/1.jpg",
-      "gallery/post-1/2.jpg",
-      "gallery/post-1/3.jpg",
-      "gallery/post-1/4.jpg",
-      "gallery/post-1/5.jpg"
-    ],
-    "tags": []
-  },
+  "id": "post-1",
+  "title": "Cat Decor ",
+  "material": "PLA",
+  "weight": 51,
+  "resolution": ".2",
+  "price": 115,
+  "printTime": "2 h",
+  "designLink": "https://www.printables.com/model/1169149-cat-decor-2/files",
+  "description": "The author marked this model as their own original creation.",
+  "likes": 32,
+  "date": "2025-07-17",
+  "thumbnail": "gallery/post-1/1.jpg",
+  "model": "gallery/post-1/model.stl",
+  "images": [
+    "gallery/post-1/1.jpg",
+    "gallery/post-1/2.jpg",
+    "gallery/post-1/3.jpg",
+    "gallery/post-1/4.jpg",
+    "gallery/post-1/5.jpg"
+  ],
+  "tags": []
+},
   {
-    "id": "post-2",
-    "title": "Designers DRAGON Sculpture",
-    "material": "PLA",
-    "weight": 270,
-    "resolution": ".2",
-    "price": 520,
-    "printTime": "16",
-    "designLink": "https://www.printables.com/model/1329331-designers-dragon-sculpture/files",
-    "description": " dragon figurine from the \"Designers\" series",
-    "likes": 125,
-    "date": "2025-07-13",
-    "thumbnail": "gallery/post-2/1.jpg",
-    "model": "gallery/post-2/model.stl",
-    "images": [
-      "gallery/post-2/1.jpg",
-      "gallery/post-2/2.jpg",
-      "gallery/post-2/3.jpg",
-      "gallery/post-2/4.jpg",
-      "gallery/post-2/5.jpg"
-    ],
-    "tags": []
-  },
+  "id": "post-2",
+  "title": "Mini Samurai Decor",
+  "material": "PLA",
+  "weight": 90,
+  "resolution": "0.12",
+  "price": 215,
+  "printTime": "8 h",
+  "designLink": "https://www.printables.com/model/1182836-mini-samurai-decor/files",
+  "description": "55*13*13  cm \nAdjustable ",
+  "likes": 68,
+  "date": "2025-07-17",
+  "thumbnail": "gallery/post-2/1.jpg",
+  "model": "gallery/post-2/model.stl",
+  "images": [
+    "gallery/post-2/1.jpg",
+    "gallery/post-2/2.jpg",
+    "gallery/post-2/3.jpg",
+    "gallery/post-2/4.jpg",
+    "gallery/post-2/5.jpg"
+  ],
+  "tags": []
+},
   {
-    "id": "post-3",
-    "title": "Pirate Benchy",
-    "material": "PLA",
-    "weight": 25,
-    "resolution": ".2",
-    "price": 65,
-    "printTime": "2",
-    "designLink": "https://www.printables.com/model/1344633-pirate-benchy",
-    "description": "This pirate benchy makes a great addition to any benchy collection",
-    "likes": 232,
-    "date": "2025-07-13",
-    "thumbnail": "gallery/post-3/1.jpg",
-    "model": "gallery/post-3/model.stl",
-    "images": [
-      "gallery/post-3/1.jpg",
-      "gallery/post-3/2.jpg",
-      "gallery/post-3/3.jpg",
-      "gallery/post-3/4.jpg",
-      "gallery/post-3/5.jpg"
-    ],
-    "tags": []
-  }
+  "id": "post-3",
+  "title": "Wolf Decor",
+  "material": "PLA",
+  "weight": 85,
+  "resolution": "0.12",
+  "price": 195,
+  "printTime": "6",
+  "designLink": "https://www.printables.com/model/1161859-wolf-decor/files",
+  "description": "5*9*10\nadjustable",
+  "likes": 125,
+  "date": "2025-07-17",
+  "thumbnail": "gallery/post-3/1.jpg",
+  "model": "gallery/post-3/model.stl",
+  "images": [
+    "gallery/post-3/1.jpg",
+    "gallery/post-3/2.jpg",
+    "gallery/post-3/3.jpg",
+    "gallery/post-3/4.jpg",
+    "gallery/post-3/5.jpg"
+  ],
+  "tags": []
+}
 ]
  
