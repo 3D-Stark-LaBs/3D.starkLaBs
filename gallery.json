@@ -67,29 +67,6 @@
     "gallery/post-3/5.jpg"
   ],
   "tags": []
-},
-  {
-  "id": "post-4",
-  "title": "Darth Vader",
-  "material": "PLA",
-  "weight": 130,
-  "resolution": "0.12",
-  "price": 285,
-  "printTime": "9",
-  "designLink": "https://www.printables.com/model/1347053-darth-vader/files",
-  "description": "6*10*12\nadjustable",
-  "likes": 125,
-  "date": "2025-07-19",
-  "thumbnail": "gallery/post-4/1.jpg",
-  "model": "gallery/post-4/model.stl",
-  "images": [
-    "gallery/post-4/1.jpg",
-    "gallery/post-4/2.jpg",
-    "gallery/post-4/3.jpg",
-    "gallery/post-4/4.jpg",
-    "gallery/post-4/5.jpg"
-  ],
-  "tags": []
 }
 ]
  
