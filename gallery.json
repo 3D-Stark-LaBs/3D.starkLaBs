@@ -91,5 +91,29 @@
   ],
   "tags": []
 }
+  ,
+  {
+  "id": "post-5",
+  "title": "Rose Decor",
+  "material": "PLA",
+  "weight": 58,
+  "resolution": ".12",
+  "price": 160,
+  "printTime": "5 h ",
+  "designLink": "https://www.printables.com/model/1161854-rose-decor/files",
+  "description": "6.5 * 7 * 12 \nsilver / white",
+  "likes": 25,
+  "date": "2025-07-25",
+  "thumbnail": "gallery/post-5/1.jpg",
+  "model": "gallery/post-5/model.stl",
+  "images": [
+    "gallery/post-5/1.jpg",
+    "gallery/post-5/2.jpg",
+    "gallery/post-5/3.jpg",
+    "gallery/post-5/4.jpg",
+    "gallery/post-5/5.jpg"
+  ],
+  "tags": []
+}
 ]
  
