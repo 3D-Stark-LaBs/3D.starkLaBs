@@ -115,5 +115,29 @@
   ],
   "tags": []
 }
+  ,
+  {
+  "id": "post-6",
+  "title": "Minimalist desktop phone holder",
+  "material": "PLA",
+  "weight": 75,
+  "resolution": ".2",
+  "price": 160,
+  "printTime": "3",
+  "designLink": "https://www.printables.com/model/1364995-minimalist-desktop-phone-holder/files",
+  "description": "red- geern-wihte\n7*9*11 cm",
+  "likes": 15,
+  "date": "2025-08-14",
+  "thumbnail": "gallery/post-6/1.jpg",
+  "model": "gallery/post-6/model.stl",
+  "images": [
+    "gallery/post-6/1.jpg",
+    "gallery/post-6/2.jpg",
+    "gallery/post-6/3.jpg",
+    "gallery/post-6/4.jpg",
+    "gallery/post-6/5.jpg"
+  ],
+  "tags": []
+}
 ]
  
