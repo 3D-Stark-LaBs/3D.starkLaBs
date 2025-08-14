@@ -163,5 +163,29 @@
   ],
   "tags": []
 }
+  .
+  {
+  "id": "post-9",
+  "title": "Tank Benchy",
+  "material": "PLA",
+  "weight": 52,
+  "resolution": ".12",
+  "price": 155,
+  "printTime": "4.5",
+  "designLink": "https://www.printables.com/model/1366820-tank-benchy/files",
+  "description": "red- geern-wihte -[5*8*7]cm",
+  "likes": 19,
+  "date": "2025-08-14",
+  "thumbnail": "gallery/post-9/1.jpg",
+  "model": "gallery/post-9/model.stl",
+  "images": [
+    "gallery/post-9/1.jpg",
+    "gallery/post-9/2.jpg",
+    "gallery/post-9/3.jpg",
+    "gallery/post-9/4.jpg",
+    "gallery/post-9/5.jpg"
+  ],
+  "tags": []
+}
 ]
  
