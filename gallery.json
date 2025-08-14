@@ -139,5 +139,29 @@
   ],
   "tags": []
 }
+  ,
+  {
+  "id": "post-7",
+  "title": "Mortal Kombat Medallion With Stand",
+  "material": "PLA",
+  "weight": 63,
+  "resolution": ".2",
+  "price": 110,
+  "printTime": "2",
+  "designLink": "https://www.thingiverse.com/thing:4763834/files",
+  "description": "red- geern-wihte -[11*2.5 *12.5]cm",
+  "likes": 22,
+  "date": "2025-08-14",
+  "thumbnail": "gallery/post-7/1.jpg",
+  "model": "gallery/post-7/model.stl",
+  "images": [
+    "gallery/post-7/1.jpg",
+    "gallery/post-7/2.jpg",
+    "gallery/post-7/3.jpg",
+    "gallery/post-7/4.jpg",
+    "gallery/post-7/5.jpg"
+  ],
+  "tags": []
+}
 ]
  
