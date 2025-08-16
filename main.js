@@ -2224,3 +2224,165 @@ document.querySelectorAll('a[href^="#"]').forEach(anchor => {
     });
 });
 
+
+
+
+// // Global variables
+// let galleryData = [];
+// const galleryContainer = document.getElementById('gallery-container');
+const loadingOverlay = document.getElementById('loading-overlay');
+
+// Theme toggle functionality
+function setupThemeToggle() {
+    const themeToggles = document.querySelectorAll('#theme-toggle, #mobile-theme-toggle');
+    
+    const applyTheme = (theme) => {
+        if (theme === 'dark') {
+            document.documentElement.classList.add('dark');
+        } else {
+            document.documentElement.classList.remove('dark');
+        }
+    };
+
+    const savedTheme = localStorage.getItem('theme') || (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light');
+    applyTheme(savedTheme);
+
+    themeToggles.forEach(toggle => {
+        toggle.addEventListener('click', () => {
+            const newTheme = document.documentElement.classList.contains('dark') ? 'light' : 'dark';
+            localStorage.setItem('theme', newTheme);
+            applyTheme(newTheme);
+        });
+    });
+}
+
+// Single Page Application (SPA) navigation logic
+const spaNavigator = {
+    routes: ['home', 'gallery', 'events', 'services', 'pricing', 'order', 'about'],
+    
+    navigateTo: function(sectionId) {
+        if (!this.routes.includes(sectionId)) return;
+
+        document.querySelectorAll('.section').forEach(section => {
+            section.classList.remove('active', 'opacity-100');
+            section.classList.add('opacity-0');
+        });
+
+        const targetSection = document.getElementById(sectionId);
+        if (targetSection) {
+            targetSection.classList.add('active');
+            setTimeout(() => targetSection.classList.add('opacity-100'), 50);
+        }
+
+        this.updateNavLinks(sectionId);
+        window.location.hash = sectionId;
+    },
+
+    updateNavLinks: function(activeSectionId) {
+        document.querySelectorAll('.nav-link, .nav-icon').forEach(link => {
+            link.classList.toggle('active', link.dataset.section === activeSectionId);
+        });
+    },
+
+    init: function() {
+        const initialSection = window.location.hash.substring(1) || 'home';
+        this.navigateTo(initialSection);
+
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', (e) => {
+                const sectionId = anchor.getAttribute('href').substring(1);
+                if (this.routes.includes(sectionId)) {
+                    e.preventDefault();
+                    this.navigateTo(sectionId);
+                }
+            });
+        });
+    }
+};
+window.spaNavigator = spaNavigator;
+
+
+// Gallery functionality
+function createProjectCard(project) {
+    const imagesJson = JSON.stringify(project.images || []);
+    const card = document.createElement('div');
+    card.className = 'project-card group relative rounded-xl overflow-hidden shadow-lg transform hover:-translate-y-1 transition-all duration-300 cursor-pointer';
+    
+    // Set data attributes for the modal
+    card.setAttribute('data-project-id', project.id);
+    card.setAttribute('data-title', project.title);
+    card.setAttribute('data-description', project.description);
+    card.setAttribute('data-images', imagesJson);
+    card.setAttribute('data-material', project.material);
+    card.setAttribute('data-weight', project.weight);
+    card.setAttribute('data-resolution', project.resolution);
+    card.setAttribute('data-print-time', project.printTime);
+    card.setAttribute('data-price', project.price);
+    card.setAttribute('data-likes', project.likes);
+    
+    card.innerHTML = `
+        <img src="${project.thumbnail}" alt="${project.title}" class="w-full h-64 object-cover transition-transform duration-300 group-hover:scale-110">
+        <div class="absolute inset-0 bg-black/50 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex flex-col justify-end p-4">
+            <h3 class="text-white text-lg font-bold truncate">${project.title}</h3>
+            <p class="text-gray-300 text-sm">${project.material || 'N/A'}</p>
+        </div>
+    `;
+
+    card.addEventListener('click', () => {
+        if (typeof openProjectModal === 'function') {
+            openProjectModal(project);
+        } else {
+            console.error('openProjectModal function not found. Is project-modal.js loaded?');
+        }
+    });
+
+    return card;
+}
+
+async function loadGallery() {
+    try {
+        const response = await fetch('gallery.json');
+        if (!response.ok) throw new Error(`HTTP error! status: ${response.status}`);
+        galleryData = await response.json();
+        
+        if (galleryContainer) {
+            galleryContainer.innerHTML = '';
+            galleryData.forEach(project => {
+                const card = createProjectCard(project);
+                galleryContainer.appendChild(card);
+            });
+        }
+    } catch (error) {
+        console.error("Failed to load gallery data:", error);
+        if (galleryContainer) {
+            galleryContainer.innerHTML = '<p class="text-center text-red-500 col-span-full">Could not load gallery items. Please try again later.</p>';
+        }
+    } finally {
+        if (loadingOverlay) {
+            loadingOverlay.classList.add('opacity-0');
+            setTimeout(() => loadingOverlay.classList.add('hidden'), 300);
+        }
+    }
+}
+
+// Back to top button
+function setupBackToTop() {
+    const backToTopButton = document.getElementById('back-to-top');
+    if (!backToTopButton) return;
+
+    window.addEventListener('scroll', () => {
+        if (window.scrollY > 300) {
+            backToTopButton.classList.remove('opacity-0', 'invisible');
+        } else {
+            backToTopButton.classList.add('opacity-0', 'invisible');
+        }
+    });
+}
+
+// Initialize all functionalities on DOMContentLoaded
+document.addEventListener('DOMContentLoaded', () => {
+    setupThemeToggle();
+    spaNavigator.init();
+    loadGallery();
+    setupBackToTop();
+});
