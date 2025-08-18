@@ -208,29 +208,6 @@
     "gallery/post-10/5.jpg"
   ],
   "tags": []
-},
- {
-  "id": "post-10",
-  "title": "Eagle Decor",
-  "material": "PLA",
-  "weight": 159,
-  "resolution": "0.12",
-  "price": 410,
-  "printTime": "12",
-  "designLink": "https://www.printables.com/model/1179686-eagle-decor",
-  "description": "[ red-orange-white-yellow-olive green ]--[15*16.5*15.5]cm",
-  "likes": 17,
-  "date": "2025-08-18",
-  "thumbnail": "gallery/post-10/1.jpg",
-  "model": "gallery/post-10/model.stl",
-  "images": [
-    "gallery/post-10/1.jpg",
-    "gallery/post-10/2.jpg",
-    "gallery/post-10/3.jpg",
-    "gallery/post-10/4.jpg",
-    "gallery/post-10/5.jpg"
-  ],
-  "tags": []
-} 
+}
 ]
  
