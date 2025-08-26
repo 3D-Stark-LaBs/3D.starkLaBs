@@ -231,6 +231,29 @@
     "gallery/Post-11/5.jpg"
   ],
   "tags": []
+},
+  {
+  "id": "post-12",
+  "title": "https://www.printables.com/model/578671-modern-3d-printed-vase-volute-elegant-home-decor-s/files",
+  "material": "PLA",
+  "weight": 56,
+  "resolution": "0.2",
+  "price": 140,
+  "printTime": "3h",
+  "designLink": "Modern 3D Printed Vase \"Volute\" - Elegant Home Decor | STL File",
+  "description": "[Red-Yellow-White-Black-Gray-Green]---[6.5*6.6*18]",
+  "likes": 25,
+  "date": "2025-08-26",
+  "thumbnail": "gallery/post-12/1.jpg",
+  "model": "gallery/post-12/model.stl",
+  "images": [
+    "gallery/post-12/1.jpg",
+    "gallery/post-12/2.jpg",
+    "gallery/post-12/3.jpg",
+    "gallery/post-12/4.jpg",
+    "gallery/post-12/5.jpg"
+  ],
+  "tags": []
 }
 
 ]
