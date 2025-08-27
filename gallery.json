@@ -234,13 +234,13 @@
 },
   {
   "id": "post-12",
-  "title": "https://www.printables.com/model/578671-modern-3d-printed-vase-volute-elegant-home-decor-s/files",
+  "title": "Modern 3D Printed Vase \"Volute\" - Elegant Home Decor | STL File",
   "material": "PLA",
   "weight": 56,
   "resolution": "0.2",
   "price": 140,
   "printTime": "3h",
-  "designLink": "Modern 3D Printed Vase \"Volute\" - Elegant Home Decor | STL File",
+  "designLink": "https://www.printables.com/model/578671-modern-3d-printed-vase-volute-elegant-home-decor-s/files",
   "description": "[Red-Yellow-White-Black-Gray-Green]---[6.5*6.6*18]",
   "likes": 25,
   "date": "2025-08-26",
@@ -252,6 +252,29 @@
     "gallery/post-12/3.jpg",
     "gallery/post-12/4.jpg",
     "gallery/post-12/5.jpg"
+  ],
+  "tags": []
+},
+  {
+  "id": "post-13",
+  "title": "Superman bust",
+  "material": "PLA",
+  "weight": 47,
+  "resolution": "0.2",
+  "price": 120,
+  "printTime": "2.5h",
+  "designLink": "https://www.printables.com/model/1373816-superman-bust",
+  "description": "[ red-orange-white-yellow-olive green ]--[5*8*9.5]",
+  "likes": 30,
+  "date": "2025-08-27",
+  "thumbnail": "gallery/post-13/1.jpg",
+  "model": "gallery/post-13/model.stl",
+  "images": [
+    "gallery/post-13/1.jpg",
+    "gallery/post-13/2.jpg",
+    "gallery/post-13/3.jpg",
+    "gallery/post-13/4.jpg",
+    "gallery/post-13/5.jpg"
   ],
   "tags": []
 }
