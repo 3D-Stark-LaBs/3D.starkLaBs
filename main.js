@@ -2258,7 +2258,7 @@ function setupThemeToggle() {
 
 // Single Page Application (SPA) navigation logic
 const spaNavigator = {
-    routes: ['home', 'gallery', 'events', 'services', 'pricing', 'order', 'about'],
+    routes: ['', 'gallery', 'events', 'services', 'pricing', 'order', 'about'],
     
     navigateTo: function(sectionId) {
         if (!this.routes.includes(sectionId)) return;
