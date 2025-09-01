@@ -300,7 +300,28 @@
     "gallery/post-14/5.jpg"
   ],
   "tags": []
+  },
+    {
+  "id": "post-15",
+  "title": "Granada",
+  "material": "PLA",
+  "weight": 49,
+  "resolution": "0.2",
+  "price": 120,
+  "printTime": "2.5",
+  "designLink": "https://www.thingiverse.com/thing:7110580",
+  "description": "[ red-orange-white-yellow-olive green ]--[5.5*5*8.5]",
+  "likes": 18,
+  "date": "2025-09-01",
+  "thumbnail": "gallery/post-15/1.jpg",
+  "model": "gallery/post-15/model.stl",
+  "images": [
+    "gallery/post-15/1.jpg",
+    "gallery/post-15/2.jpg",
+    "gallery/post-15/3.jpg",
+    "gallery/post-15/4.jpg",
+    "gallery/post-15/5.jpg"
+  ],
+  "tags": []
 }
-
-]
  
