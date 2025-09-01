@@ -392,6 +392,29 @@
     "gallery/post-18/5.jpg"
   ],
   "tags": []
+},
+  {
+  "id": "post-19",
+  "title": "Cyber Beret",
+  "material": "PLA",
+  "weight": 24,
+  "resolution": "0.12",
+  "price": 80,
+  "printTime": "2h",
+  "designLink": "https://www.printables.com/model/1373492-cyber-beret/files",
+  "description": "[ red-orange-white-yellow-olive green ]---[5*5.5*4.5]",
+  "likes": 22,
+  "date": "2025-09-01",
+  "thumbnail": "gallery/post-19/1.jpg",
+  "model": "gallery/post-19/model.stl",
+  "images": [
+    "gallery/post-19/1.jpg",
+    "gallery/post-19/2.jpg",
+    "gallery/post-19/3.jpg",
+    "gallery/post-19/4.jpg",
+    "gallery/post-19/5.jpg"
+  ],
+  "tags": []
 }
  
 ]
