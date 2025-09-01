@@ -323,5 +323,28 @@
     "gallery/post-15/5.jpg"
   ],
   "tags": []
+},
+  {
+  "id": "post-16",
+  "title": "Ghostface Chibi – Cute Horror Icon for 3D Printing",
+  "material": "PLA",
+  "weight": 31,
+  "resolution": "0.2",
+  "price": 85,
+  "printTime": "1.8",
+  "designLink": "https://www.printables.com/model/1381261-ghostface-chibi-cute-horror-icon-for-3d-printing/files",
+  "description": "[ red-orange-white-yellow-olive green ]---[5.5*4.5*9.5]",
+  "likes": 20,
+  "date": "2025-09-01",
+  "thumbnail": "gallery/post-16/1.jpg",
+  "model": "gallery/post-16/model.stl",
+  "images": [
+    "gallery/post-16/1.jpg",
+    "gallery/post-16/2.jpg",
+    "gallery/post-16/3.jpg",
+    "gallery/post-16/4.jpg",
+    "gallery/post-16/5.jpg"
+  ],
+  "tags": []
 }
  
