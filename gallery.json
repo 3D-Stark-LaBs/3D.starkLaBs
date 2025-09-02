@@ -345,20 +345,20 @@
     "gallery/post-16/4.jpg",
     "gallery/post-16/5.jpg"
   ],
-  "tags": []
-},
-  {
+    "tags": []
+  },
+    {
   "id": "post-17",
   "title": "Fourth Wing Tairn Funko-Inspired Dragon Figurine",
   "material": "PLA",
-  "weight": 5,
-  "resolution": "0.2",
-  "price": 30,
-  "printTime": "0.4h",
+  "weight": 30,
+  "resolution": "0.12",
+  "price": 90,
+  "printTime": "2.2",
   "designLink": "https://www.printables.com/model/1373706-fourth-wing-tairn-funko-inspired-dragon-figurine/files",
-  "description": "[ red-orange-white-yellow-olive green ]--[2.5*2*1.5]",
-  "likes": 20,
-  "date": "2025-09-01",
+  "description": "[ red-orange-white-yellow-olive green ]--[6.5*5.5*5.5]",
+  "likes": 33,
+  "date": "2025-09-02",
   "thumbnail": "gallery/post-17/1.jpg",
   "model": "gallery/post-17/model.stl",
   "images": [
@@ -367,10 +367,10 @@
     "gallery/post-17/3.jpg",
     "gallery/post-17/4.jpg",
     "gallery/post-17/5.jpg"
-  ],
-  "tags": []
-},
-  {
+  ], 
+    "tags": []
+    },  
+    {
   "id": "post-18",
   "title": "Indoor Plant Pot with Drainage and Drip tray",
   "material": "PLA",
